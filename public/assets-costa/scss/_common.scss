@@ -1,0 +1,25 @@
+.btn.btn-pill{
+    font-family: "Raleway", Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    border-radius: 500px;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 10px 40px;
+    &.btn-amarillo{
+    border: 3px solid $amarillo;
+    color: $amarillo;
+    &:hover{
+        color:#FFF;
+        background-color: $amarillo;
+    }
+    }
+}
+
+.text-amarillo{
+    color: $amarillo;
+}
+.text-verde{
+    color: $verde;
+}
+.text-azul{
+    color: $azul;
+}

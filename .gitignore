@@ -1,0 +1,5 @@
+/bower_components/
+/vendor/
+composer.phar
+/public/img
+/.sass-cache/*

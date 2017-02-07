@@ -1,0 +1,26 @@
+    <div class="barra-header"></div>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container" style="position:relative;">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-bars fa-fw"></i>
+      </button>
+      <a href="{{urlFor('shwLogin')}}" class="login-btn pull-right">INGRESAR<img src="{{ baseUrl() }}/assets-costa/img/login.svg" alt=""></a>
+                <a class="navbar-brand hidden-lg hidden-md" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-costa/img/logo-mobile.svg" class="logo img-responsive" alt=""></a>
+                <a class="navbar-brand hidden-xs hidden-sm" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-costa/img/logo.svg" class="logo img-responsive" alt=""></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">                  
+                    <li class="{{ nav == 1 ? 'active' : '' }}"><a href="{{urlFor('shwAcerca')}}">De dónde partimos</a></li>
+                    <li class="{{ nav == 2 ? 'active' : '' }}"><a href="#">Actividades</a></li>
+                    <li class="{{ nav == 3 ? 'active' : '' }}"><a href="#">Áreas de acción</a></li>
+                    <li class="btn-ingreso hidden-sm hidden-md hidden-lg"><a href="{{urlFor('shwLogin')}}" >INGRESAR<img src="{{ baseUrl() }}/assets-costa/img/login.svg" alt=""></a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>

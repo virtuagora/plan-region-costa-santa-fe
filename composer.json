@@ -1,0 +1,26 @@
+{
+    "name": "Virtuagora",
+    "description": "Plataforma web de participación ciudadana.",
+    "license": "MIT",
+    "require": {
+        "slim/slim": "2.*",
+        "slim/views": "*",
+        "twig/twig": "1.*",
+        "symfony/translation": "*",
+        "symfony/config": "*",
+        "illuminate/database": "4.2.*",
+        "codeguy/upload": "*",
+        "ircmaxell/password-compat": "*",
+        "google/recaptcha": "~1.1",
+        "augusthur/validation": "*"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/augusthur/PHP-Validation"
+        }
+    ],
+    "autoload": {
+        "classmap": [ "models", "controllers", "representations", "utils" ]
+    }
+}
