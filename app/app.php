@@ -170,6 +170,7 @@ $app->get('/portal', 'PortalCtrl:verPortal')->name('shwPortal');
 // $app->get('/antecedentes', 'PortalCtrl:verAntecedentes')->name('shwAnteced');
 // $app->get('/propuesta', 'PortalCtrl:verPropuesta')->name('shwProp');
 $app->get('/acerca', 'PortalCtrl:verAcerca')->name('shwAcerca');
+$app->get('/actividades', 'PortalCtrl:verActividades')->name('shwActividades');
 //$app->get('/fundamentos', 'PortalCtrl:verFundamentos')->name('shwFundamen');
 //$app->get('/tutorial', 'PortalCtrl:verTutorial')->name('shwTutorial');
 $app->get('/login', $checkNoSession, 'PortalCtrl:verLogin')->name('shwLogin');

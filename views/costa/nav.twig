@@ -30,7 +30,7 @@
                 </ul>
                 <ul class="nav navbar-nav common-menu">                  
                     <li class="{{ nav == 1 ? 'active' : '' }}"><a href="{{urlFor('shwAcerca')}}">De dónde partimos</a></li>
-                    <li class="{{ nav == 2 ? 'active' : '' }}"><a href="#">Actividades</a></li>
+                    <li class="{{ nav == 2 ? 'active' : '' }}"><a href="{{urlFor('shwActividades')}}">Actividades</a></li>
                     <li class="{{ nav == 3 ? 'active' : '' }}"><a href="#">Áreas de acción</a></li>
                     {% if user is not empty %}
                     <li class="btn-ingreso hidden-sm hidden-md hidden-lg">
