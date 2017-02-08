@@ -1,27 +1,32 @@
-{% extends "lpe/master.twig" %} 
-{# ----------------------------------------------------------- #} 
-{% block titulo %}Validar email{% endblock %} 
-{% block body %}
-
-<div class="container">
-	<div class="row">
-		<div class="panel-inicio col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 ">
-			{% if usuarioValido == true %}
-					<h2><strong>SU EMAIL HA SIDO VERIFICADO</strong></h2>
-			<p>Puede volver a la plataforma iniciando sesión con su nueva contraseña.</p>
-									<a href="{{ urlFor('shwLogin') }}" class="btn btn-primary">Iniciar sesión</a>
-					{% else %}
-		<h2><strong>LINK DE VERIFICACIÓN</strong></h2>
-			<p>El link ingresado es incorrecto. Verifique que el link que hemos enviado a su dirección de correo electrónico sea el mismo que ingresó en la barra de direcciones.</p>
-			<p>Si sigue viendo este mensaje, comuníquese con un administrador.</p>
-						<a href="{{ urlFor('shwPortal') }}" class="btn btn-link">Volver</a>
-						{% endif %}
-		</div>
-	</div>
+{% extends "costa/master-clean.twig" %} {% set nav = 0 %} {% block titulo %}Verificación de email{% endblock titulo %} {%
+block linkhead %} {% endblock %} {% block header %} {% endblock header %} {% block body %}
+<div id="login">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                {% if usuarioValido == true %}
+                <h1>Su contraseña ha sido cambiada</h1>
+                {% else %}
+                <h1>Link invalido</h1>
+                {% endif %}
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 text-center">
+                {% if usuarioValido == true %}
+                <p>El link ingresado es incorrecto. Verifique que el link que hemos enviado a su dirección de correo electrónico sea el mismo que ingresó en la barra de direcciones.</p>
+                <br>
+                <a href="{{ urlFor('shwLogin') }}" class="btn btn-primary btn-submit btn-block">Iniciar sesión</a>
+                {% else %}
+                <p>Si sigue viendo este mensaje, comuníquese con un administrador.</p>
+                <br>
+                <a href="{{ urlFor('shwPortal') }}" class="btn btn-primary btn-aux btn-block">Volver</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
-
-{% endblock %} 
-{# ----------------------------------------------------------- #} 
-{% block scripts %}
-
-{% endblock %}
+{% endblock %} {% block scripts %} {% endblock %}

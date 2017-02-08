@@ -1,126 +1,108 @@
-{% extends "lpe/master.twig" %} {# ----------------------------------------------------------- #} {% block linkhead %}
+{% extends "costa/master-clean.twig" %} {% set nav = 0 %} {% block titulo %}Registro{% endblock titulo %} {% block linkhead
+%}
 <script src='https://www.google.com/recaptcha/api.js'></script>
-<link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets/css/jquery-ui/jquery-ui.min.css" />
-<link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets/css/timepicker/jquery.timepicker.css" /> {% endblock %} {% block titulo %}Registro{% endblock %} {% block body %}
-
-<div class="container">
-    <div class="row">
-        <div class="panel-inicio col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 ">
-            <h2><strong>REGISTRO</strong></h2>
-            <p>En caso que ya tenga una cuenta, <a href="{{ urlFor('shwLogin') }}"><i class="fa fa-sign-in fa-fw"></i> Inicie Sesión</a></p>
-            <div class="well well-lg">
-                <form action="{{ urlFor('runCrearUsuario') }}" method="POST" class="form-horizontal" data-toggle="validator">
-                    <fieldset>
-                        <div class="form-group">
-                            <label for="inputNombre" class="col-md-2 control-label">Nombre</label>
-                            <div class="col-md-10">
-                                <input name="nombre" type="text" data-error="Complete el campo con un nombre valido" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" placeholder="Escriba aquí su nombre " id="inputNombre
+<link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets-costa/css/jquery-ui/jquery-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets-costa/css/timepicker/jquery.timepicker.css" /> {% endblock %} {% block header %} {% endblock header %} {% block body %}
+<div id="login">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h1>Registro</h1>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div id="registro-box" class="container">
+        <form action="{{ urlFor('runCrearUsuario') }}" method="POST" data-toggle="validator">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+                    <div class="form-group">
+                        <input name="nombre" type="text" data-error="Complete el campo con un nombre valido" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$"
+                            placeholder="Nombre " id="inputNombre
                                     " class="form-control " required>
-                                <div class="help-block with-errors "></div>
-                            </div>
-                        </div>
-                        <div class="form-group ">
-                            <label for="inputApellido" class="col-md-2 control-label">Apellido</label>
-                            <div class="col-md-10">
-                                <input name="apellido" type="text" data-error="Complete el campo con un apellido valido" pattern="^^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" placeholder="Escriba aquí su apellido" id="inputApellido"
-                                    class="form-control" required>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail" class="col-md-2 control-label">Email</label>
-                            <div class="col-md-10">
-                                <input name="email" type="email" data-error="Complete el campo con un email valido" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" placeholder="Escriba aquí su email"
-                                    id="inputEmail" class="form-control" required>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword" class="col-md-2 control-label">Contraseña</label>
-                            <div class="col-md-10">
-                                <input name="password" type="password" placeholder="Escriba aquí su contraseña" id="inputPassword" class="form-control" data-error="Complete el campo con una contraseña" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-2 control-label"></label>
-                            <div class="col-md-10">
-                                <input name="password2" type="password" placeholder="Reingrese su contraseña" class="form-control" data-match="#inputPassword" data-error="Reingrese la contraseña que ha ingresado en el campo anterior" data-match-error="Las contraseñas no son iguales. Revisé"
-                                    required>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-2 control-label">Fecha Nacimiento</label>
-                            <div class="col-md-10">
-                                <input id="datepicker" class="form-control" placeholder="Haga clic para seleccionar la fecha">
-                                <input id="guardarFecha" type="hidden">
-                                <input id="fecha-final" name="birthday" type="hidden" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputLocalidad" class="col-md-2 control-label">Departamento</label>
-                            <div class="col-md-10">
-                                <select class="form-control" id="inputLocalidad" name="address" data-error="Elija su localidad" required>
+                            <div class="help-block with-errors "></div>
+                    </div>
+                    <div class="form-group">
+                        <input name="apellido" type="text" data-error="Complete el campo con un apellido valido" pattern="^^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$"
+                            placeholder="Apellido" id="inputApellido" class="form-control" required>
+                            <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <input name="email" type="email" data-error="Complete el campo con un email valido" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                            placeholder="Email" id="inputEmail" class="form-control" required>
+                            <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <input name="password" type="password" placeholder="Escriba aquí su contraseña" id="inputPassword" class="form-control" data-error="Contraseña"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <input name="password2" type="password" placeholder="Reingrese contraseña" class="form-control" data-match="#inputPassword"
+                            data-error="Reingrese la contraseña que ha ingresado en el campo anterior" data-match-error="Las contraseñas no son iguales. Revisé"
+                            required>
+                            <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <input id="datepicker" class="form-control" placeholder="Fecha de nacimiento">
+                        <input id="guardarFecha" type="hidden">
+                        <input id="fecha-final" name="birthday" type="hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label for="inputOcupacion">Localidad</label>
+                        <select class="form-control" id="inputLocalidad" name="address" data-error="Localidad" required>
                                         {% for localidad in localidades %}
                                             <option value="{{ localidad }}">{{ localidad }}</option>
                                         {% endfor %}
                                     </select>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputOcupacion" class="col-md-2 control-label">Ocupacion</label>
-                            <div class="col-md-10">
-                                <select class="form-control" id="inputOcupacion" name="title" data-error="Elija su ocupacion" required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputOcupacion">Ocupacion</label>
+                        <select class="form-control" id="inputOcupacion" name="title" data-error="Ocupación" required>
                                         {% for ocupacion in ocupaciones %}
                                             <option value="{{ ocupacion }}">{{ ocupacion }}</option>
                                         {% endfor %}
                                     </select>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="captcha-cont g-recaptcha" data-sitekey="6LcF-CYTAAAAAOdQ_mLyGnTl6uqw1FGj7yrpfW_F"></div>
-                        </div>
-                    </fieldset>
-                    <div class="text-center">
-                        <a href="{{ urlFor('shwPortal') }}" class="btn btn-link">Volver</a>
-                        <button type="submit" class="btn btn-primary">Registrarse <i class="zmdi zmdi-account-add zmdi-hc-lg zmdi-hc-fw"></i></button>
+                        <div class="help-block with-errors"></div>
                     </div>
-                </form>
+                    <div class="form-group">
+                        <div class="captcha-cont g-recaptcha" data-sitekey="6LcF-CYTAAAAAOdQ_mLyGnTl6uqw1FGj7yrpfW_F"></div>
+                    </div>
+                </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-submit btn-block">Entrar <i class="mdi mdi-login-variant"></i></button>
+                        <br>
+                        <a href="{{urlFor('shwLogin')}}" class="btn btn-primary btn-aux btn-block">Volver</a>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
-
-{% endblock %} {# ----------------------------------------------------------- #} {% block scripts %}
-<script src="{{ baseUrl() }}/assets-lpe/js/validator.min.js"></script>
-<script src="{{ baseUrl() }}/assets/js/jquery-ui/jquery-ui.min.js"></script>
-<script src="{{ baseUrl() }}/assets/js/jquery-ui/datepicker-es.js"></script>
+{% endblock body %} {% block scripts %}
+<script src="{{ baseUrl() }}/assets-costa/js/validator.min.js"></script>
+<script src="{{ baseUrl() }}/assets-costa/js/jquery-ui/jquery-ui.min.js"></script>
+<script src="{{ baseUrl() }}/assets-costa/js/jquery-ui/datepicker-es.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#datepicker").datepicker({
             changeMonth: true,
             changeYear: true,
             dateFormat: 'DD, dd MM yy',
             altField: "#guardarFecha",
             altFormat: "yy-mm-dd",
-            yearRange: '1920:2010'
+            yearRange: '1920:2010',
+            defaultDate: new Date(1920,0,1)
         });
     });
 
 
-    $('form').submit(function(e) {
+    $('form').submit(function (e) {
         var fecha = $("#guardarFecha").val();
         $('#fecha-final').val(fecha);
-    })
-
-
-    // Evito que agreguen un retorno de carro.
-    // $("textarea[name='titulo']").keypress(function(event) {
-    //     if (event.keyCode == 13) {
-    //         event.preventDefault();
-    //     }
-    // });
+    })  
 </script>
-{% endblock %}
+{% endblock scripts %}

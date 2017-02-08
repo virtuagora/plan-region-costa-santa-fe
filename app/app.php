@@ -99,9 +99,10 @@ $checkModifyAuth = function ($resource, $moderable = true) use ($app) {
 
 // Prepare dispatcher
 $app->get('/test', function () use ($app) {
-    $req = $app->request;
-    $uri = $req->headers->get('x-forwarded-host')?: $req->getUrl();
-    var_dump($uri);
+    // $req = $app->request;
+    // $uri = $req->headers->get('x-forwarded-host')?: $req->getUrl();
+    // var_dump($uri);
+    $app->render('costa/test.twig');
 });
 
 $app->group('/derecho', function () use ($app, $checkRole) {

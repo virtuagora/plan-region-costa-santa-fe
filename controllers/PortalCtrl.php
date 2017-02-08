@@ -79,7 +79,7 @@ class PortalCtrl extends Controller {
     }
 
     public function verRegistrar() {
-        $this->render('lpe/registro/registro.twig', [
+        $this->render('costa/registro/registro.twig', [
             'localidades' => ['Rosario','La Capital','General López','Castellanos','General Obligado',
                 'San Lorenzo','Las Colonias','Constitución','Caseros','San Jerónimo','San Cristóbal',
                 'Iriondo','San Martín','Vera','Belgrano','San Justo','San Javier','9 de Julio','Garay'],
