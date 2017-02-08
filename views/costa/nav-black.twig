@@ -7,17 +7,38 @@
         <span class="sr-only">Toggle navigation</span>
         <i class="fa fa-bars fa-fw"></i>
       </button>
-      <a href="{{urlFor('shwLogin')}}" class="login-btn pull-right">INGRESAR<img src="{{ baseUrl() }}/assets-costa/img/login-gray.svg" alt=""></a>
+      {% if user is not empty %}
+      <a href="javascript:void(0)" class="common-menu user-menu-show login-btn logged pull-right">{{ user.nombre }}<img src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" class="img-circle img-avatar" ><i class="fa fa-caret-down fa-fw"></i></a>
+      <a href="javascript:void(0)" class="user-menu common-menu-show login-btn logged pull-right" style="display:none">Cerrar menú<i class="fa fa-caret-up fa-fw"></i></a>
+      {% else %}
+      <a href="{{urlFor('shwLogin')}}" class="login-btn pull-right">INGRESAR<img class="icono-login" src="{{ baseUrl() }}/assets-costa/img/login-gray.svg" alt=""></a>
+      {% endif %}
                 <a class="navbar-brand hidden-lg hidden-md" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-costa/img/logo-mobile-black.svg" class="logo img-responsive" alt=""></a>
                 <a class="navbar-brand hidden-xs hidden-sm" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-costa/img/logo-black.svg" class="logo img-responsive" alt=""></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">                  
+                    {% if user is not empty %}
+                <ul class="nav navbar-nav user-menu" style="display:none">                  
+                    <li><a href="#">Ver perfil</a></li>
+                    <li><a href="javascript:logout()">Cerrar sesión <i class="fa fa-sign-out fa-fw fa-lg"></i></a></li>
+                    <li class="btn-ingreso hidden-sm hidden-md hidden-lg">
+                        <a href="javascript:void(0)" class="user-menu common-menu-show">Cerrar menú<i class="fa fa-caret-up fa-fw"></i></a>
+                        </li>                                        
+                        <form id="form-salir" action="{{ urlFor('runLogout') }}" method="POST"></form>
+                        {% endif %}
+                </ul>
+                <ul class="nav navbar-nav common-menu">                  
                     <li class="{{ nav == 1 ? 'active' : '' }}"><a href="{{urlFor('shwAcerca')}}">De dónde partimos</a></li>
                     <li class="{{ nav == 2 ? 'active' : '' }}"><a href="#">Actividades</a></li>
                     <li class="{{ nav == 3 ? 'active' : '' }}"><a href="#">Áreas de acción</a></li>
-                    <li class="btn-ingreso hidden-sm hidden-md hidden-lg"><a href="{{urlFor('shwLogin')}}" >INGRESAR<img src="{{ baseUrl() }}/assets-costa/img/login.svg" alt=""></a></li>
+                    {% if user is not empty %}
+                    <li class="btn-ingreso hidden-sm hidden-md hidden-lg">
+                        <a href="#" class="common-menu user-menu-show">{{ user.nombre }} <img src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" class="img-circle img-avatar" ><i class="fa fa-caret-down fa-fw"></i></a>
+                        </li>                    
+                    {% else %}
+                    <li class="btn-ingreso hidden-sm hidden-md hidden-lg"><a href="{{urlFor('shwLogin')}}">INGRESAR<img class="icono-login" src="{{ baseUrl() }}/assets-costa/img/login.svg" alt=""></a></li>
+                    {% endif %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

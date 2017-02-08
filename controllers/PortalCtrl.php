@@ -44,14 +44,14 @@ class PortalCtrl extends Controller {
         $this->render('costa/portal/acerca.twig');
     }
 
-    public function verTutorial() {
-        $this->render('lpe/contenido/static/tutorial.twig');
-    }
+//     public function verTutorial() {
+//         $this->render('lpe/contenido/static/tutorial.twig');
+//     }
 
 
- public function verFundamentos() {
-        $this->render('lpe/contenido/static/fundamentos.twig');
-    }
+//  public function verFundamentos() {
+//         $this->render('lpe/contenido/static/fundamentos.twig');
+//     }
 
 
     public function verTos() {
@@ -149,7 +149,7 @@ class PortalCtrl extends Controller {
         ]);
         mail($to, $subject, $message);
         
-        $this->render('lpe/registro/registro-exito.twig', array('email' => $preuser->email));
+        $this->render('costa/registro/registro-exito.twig', array('email' => $preuser->email));
     }
 
     public function verificarEmail($idPre, $token) {
@@ -175,15 +175,15 @@ class PortalCtrl extends Controller {
             $usuario->address = $preuser->address;
             $usuario->save();
             $preuser->delete();
-            $this->render('lpe/registro/validar-correo.twig', array('usuarioValido' => true,
+            $this->render('costa/registro/validar-correo.twig', array('usuarioValido' => true,
                                                                 'email' => $usuario->email));
         } else {
-            $this->render('lpe/registro/validar-correo.twig', array('usuarioValido' => false));
+            $this->render('costa/registro/validar-correo.twig', array('usuarioValido' => false));
         }
     }
 
     public function verRecuperarClave() {
-        $this->render('lpe/registro/recuperar-clave.twig');
+        $this->render('costa/registro/recuperar-clave.twig');
     }
     
     public function recuperarClave() {
@@ -219,7 +219,7 @@ class PortalCtrl extends Controller {
         $vdt->test($idUsu, new Validate\Rule\NumNatural());
         $vdt->test($token, new Validate\Rule\AlphaNumeric());
         $vdt->test($token, new Validate\Rule\ExactLength(32));
-        $this->render('lpe/registro/reiniciar-clave.twig', ['idUsu' => $idUsu, 'token' => $token]);
+        $this->render('costa/registro/reiniciar-clave.twig', ['idUsu' => $idUsu, 'token' => $token]);
     }
     
     public function reiniciarClave($idUsu, $token) {
@@ -249,6 +249,6 @@ class PortalCtrl extends Controller {
     }
     
     public function finReiniciarClave() {
-        $this->render('lpe/registro/reiniciar-completo.twig');
+        $this->render('costa/registro/reiniciar-completo.twig');
     }
 }

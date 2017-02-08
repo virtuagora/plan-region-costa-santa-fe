@@ -5,7 +5,7 @@ block linkhead %} {% endblock %} {% block header %} {% endblock header %} {% blo
         <div class="row">
             <div class="col-xs-12 text-center">
                 {% if usuarioValido == true %}
-                <h1>Su contraseña ha sido cambiada</h1>
+                <h1>Su cuenta ha sido verificada</h1>
                 {% else %}
                 <h1>Link invalido</h1>
                 {% endif %}
@@ -17,10 +17,11 @@ block linkhead %} {% endblock %} {% block header %} {% endblock header %} {% blo
         <div class="row">
             <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 text-center">
                 {% if usuarioValido == true %}
-                <p>El link ingresado es incorrecto. Verifique que el link que hemos enviado a su dirección de correo electrónico sea el mismo que ingresó en la barra de direcciones.</p>
+                <p>Puede volver a la plataforma iniciando sesión con su nueva contraseña.</p>
                 <br>
                 <a href="{{ urlFor('shwLogin') }}" class="btn btn-primary btn-submit btn-block">Iniciar sesión</a>
                 {% else %}
+                <p>El link ingresado es incorrecto. Verifique que el link que hemos enviado a su dirección de correo electrónico sea el mismo que ingresó en la barra de direcciones.</p>                
                 <p>Si sigue viendo este mensaje, comuníquese con un administrador.</p>
                 <br>
                 <a href="{{ urlFor('shwPortal') }}" class="btn btn-primary btn-aux btn-block">Volver</a>
