@@ -171,6 +171,7 @@ $app->get('/portal', 'PortalCtrl:verPortal')->name('shwPortal');
 // $app->get('/propuesta', 'PortalCtrl:verPropuesta')->name('shwProp');
 $app->get('/acerca', 'PortalCtrl:verAcerca')->name('shwAcerca');
 $app->get('/actividades', 'PortalCtrl:verActividades')->name('shwActividades');
+$app->get('/areas', 'PortalCtrl:verAreas')->name('shwAreas');
 //$app->get('/fundamentos', 'PortalCtrl:verFundamentos')->name('shwFundamen');
 //$app->get('/tutorial', 'PortalCtrl:verTutorial')->name('shwTutorial');
 $app->get('/login', $checkNoSession, 'PortalCtrl:verLogin')->name('shwLogin');

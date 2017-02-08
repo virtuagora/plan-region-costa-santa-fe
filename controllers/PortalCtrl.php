@@ -46,6 +46,9 @@ class PortalCtrl extends Controller {
     public function verActividades() {
         $this->render('costa/portal/actividades.twig');
     }
+    public function verAreas() {
+        $this->render('costa/portal/areas.twig');
+    }
 
 //     public function verTutorial() {
 //         $this->render('lpe/contenido/static/tutorial.twig');
