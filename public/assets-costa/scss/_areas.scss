@@ -1,4 +1,4 @@
-#simple.header-bg.areas {
+    #simple.header-bg.areas {
     background-image: url("../img/headers/areas-bg1.jpg");
 }
 
@@ -19,21 +19,54 @@
             line-height: 27.5px;
         }
     }
-    .area{
-    h1 {
-        font-size: 26px;
-        @media (min-width: $screen-sm-min) {
-            font-size: 30px;
+    .area {
+        img{
+            max-height: 65px;
         }
-        color: #edb001;
-        margin-bottom: 0;
-        &.black {
-            font-weight: 800;
+        h1 {
+            font-size: 26px;
+            @media (min-width: $screen-sm-min) {
+                font-size: 30px;
+                margin-top: 18px;
+            margin-bottom: 40px;
+            }
+            @media (min-width: $screen-md-min) {
+                font-size: 30px;
+                margin-top: 10px;
+            margin-bottom: 40px;
+            }
+            @media (min-width: $screen-lg-min) {
+                font-size: 30px;
+                margin-top: 18px;
+            margin-bottom: 40px;
+            }
+            color: #edb001;
+            &.black {
+                font-weight: 800;
+            }
+            &.bold {
+                font-weight: 600;
+            }
         }
-        &.bold {
+        p{
+            font-size: 15px;
+            line-height: 23.5px;
+            margin-bottom: 32.5px;
+        }
+        a.btn.btn-amarillo {
+            border: 1px solid $amarillo;
+            color: $amarillo;
+            background-color: transparent;
+            font-family: "Raleway", serif;
+            font-size: 15px;
             font-weight: 600;
+            padding: 15px 50px;
+            margin-bottom: 60px;
+            //margin-top: 27.5px;
+            &:hover {
+                background-color: $amarillo;
+                color: #FFF;
+            }
         }
-    }
-
     }
 }
