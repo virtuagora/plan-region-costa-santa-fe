@@ -8,8 +8,8 @@
         <i class="fa fa-bars fa-fw"></i>
       </button>
       {% if user is not empty %}
-      <a href="javascript:void(0)" class="common-menu user-menu-show login-btn logged pull-right">{{ user.nombre }}<img src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" class="img-circle img-avatar" ><i class="fa fa-caret-down fa-fw"></i></a>
-      <a href="javascript:void(0)" class="user-menu common-menu-show login-btn logged pull-right" style="display:none">Cerrar menú<i class="fa fa-caret-up fa-fw"></i></a>
+      <a href="javascript:void(0)" class="common-menu user-menu-show login-btn logged pull-right"><span class="hidden-sm">{{ user.nombre|upper }}</span><img src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" class="img-circle img-avatar" ><i class="fa fa-caret-down fa-fw"></i></a>
+      <a href="javascript:void(0)" class="user-menu common-menu-show login-btn logged pull-right" style="display:none">VOLVER AL MENÚ<i class="fa fa-caret-up fa-fw"></i></a>
       {% else %}
       <a href="{{urlFor('shwLogin')}}" class="login-btn pull-right">INGRESAR<img class="icono-login" src="{{ baseUrl() }}/assets-costa/img/login.svg" alt=""></a>
       {% endif %}
@@ -21,9 +21,12 @@
                     {% if user is not empty %}
                 <ul class="nav navbar-nav user-menu" style="display:none">                  
                     <li><a href="#">Ver perfil</a></li>
+                    {% if user and (user.patrulla_id != null) %}
+<li><a href="{{urlFor('shwIndexAdmin')}}">Administrar</a></li>
+                    {% endif %}
                     <li><a href="javascript:logout()">Cerrar sesión <i class="fa fa-sign-out fa-fw fa-lg"></i></a></li>
                     <li class="btn-ingreso hidden-sm hidden-md hidden-lg">
-                        <a href="javascript:void(0)" class="user-menu common-menu-show">Cerrar menú<i class="fa fa-caret-up fa-fw"></i></a>
+                        <a href="javascript:void(0)" class="user-menu common-menu-show">VOLVER AL MENÚ<i class="fa fa-caret-up fa-fw"></i></a>
                         </li>                                        
                         <form id="form-salir" action="{{ urlFor('runLogout') }}" method="POST"></form>
                         {% endif %}

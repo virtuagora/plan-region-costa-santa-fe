@@ -17,7 +17,7 @@ class DerechoCtrl extends Controller {
             }
         }
         
-        $this->render('lpe/contenido/derecho/ver.twig', [
+        $this->render('costa/contenido/derecho/ver.twig', [
             'derecho' => $datosDer,
             'voto' => $votosUsr
         ]);
@@ -25,7 +25,7 @@ class DerechoCtrl extends Controller {
 
     public function verCrear() {
         $categorias = Categoria::all();
-        $this->render('lpe/contenido/derecho/crear.twig', [
+        $this->render('costa/contenido/derecho/crear.twig', [
             'categorias' => $categorias->toArray()
         ]);
     }
@@ -70,7 +70,7 @@ class DerechoCtrl extends Controller {
         $derecho = Derecho::with('contenido')->findOrFail($idDer);
         $contenido = $derecho->contenido;
         $datos = array_merge($contenido->toArray(), $derecho->toArray());
-        $this->render('lpe/contenido/derecho/editar.twig', [
+        $this->render('costa/contenido/derecho/editar.twig', [
             'derecho' => $datos,
             'categorias' => $categorias
         ]);

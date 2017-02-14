@@ -1,0 +1,132 @@
+{% extends "costa/master-clean.twig" %} {% set nav = 0 %} {% block titulo %}Crear area{% endblock titulo %} {% block linkhead
+%} {% endblock %} {% block header %} {% endblock header %} {% block body %}
+<div id="" class="form derecho">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h1>Nueva area</h1>
+				<hr>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-8 col-md-offset-2">
+				<div class="form-group">
+					<h3>Titulo del area</h3>
+					<h6 class="text-info"><b>Nota:</b> Evite que sea muy largo</h6>
+					<input name="" class="form-control input-lg" />
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-md-8 col-md-offset-2">
+				<div class="form-group">
+					<h3>Breve descripción para el Home <small>(Max: 150 caracteres)</small></h3>
+					<h6 class="text-info"><b>Nota:</b> La siguiente descripcion es la que se muestra en una parte del Home. Le sugerimos que no superen los 150 caracteres, o que todas las areas tenga.</h6>
+					<textarea name=""  rows="1" class="form-control"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-md-8 col-md-offset-2">
+				<div class="form-group">
+					<h3>Descripción del area</h3>
+					<h6 class="text-info"><b>Nota:</b> La siguiente descripción aparecerá en el listado de Areas de Acción.</h6>
+					<textarea name=""  rows="1" class="form-control"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div id="derecho" class="col-xs-12 col-md-8 col-md-offset-2">
+				<div id="descripcion">
+				</div>
+				<hr>
+				<div class="lista-acciones">
+					<div class="accion-container">
+						<textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la accion..."></textarea>
+					</div>
+				</div>
+				<a id="nuevaAccion" href="javascript:void(0)" class="btn btn-sm btn-info btn-block"><i class="mdi mdi-plus"></i> Agregar una acción</a>
+				<br>
+				<div class="clearfix">
+					<a href="#" class="btn btn-large btn-default ">Cancelar</a>
+					<button type="submit" class="btn btn-lg btn-primary pull-right">Subir nuevo derecho</button>
+				</div>
+			</div>
+			<input type="text" name="secciones" value="" hidden>
+			<input type="text" name="categoria" value="1" hidden>
+			<input type="text" name="tags" value="" hidden>
+		</div>
+	</div>
+</div>
+{% endblock body %} {% block scripts %}
+<script src="{{ baseUrl() }}/assets-lpe/js/autosize.min.js"></script>
+<script id="accionTemplate" type="text/template">
+    <div class="accion-container">
+        <a id="eliminar-numAccion" href="javascript:void(0)" data-idaccion='numAccion' class="eliminarAccion pull-right" style="font-size:20px;"><i class="mdi mdi-close"></i></a>
+        <textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la accion..."></textarea>
+    </div>
+</script>
+<script>
+    var numeroAccion = 2;
+    $(document).ready(function() {
+    //Events
+    // $("a.eliminarArticulo").on("click", eliminarArticulo);
+    autosize($('textarea'));
+
+    $(':file').on('fileselect', function(event, numFiles, label) {
+        var input = $(this).parents('.input-group').find(':text'),
+            log = numFiles > 1 ? numFiles + ' files selected' : label;
+        if(numFiles > 1 || numFiles == 0){
+            alert('Por favor, seleccione solo 1 archivo');
+        } else if(numFiles == 1){
+            input.val(log);
+        }
+    });
+
+
+    });
+    $('input[name=video]').change(function() {
+        $("#youtubeVideo iframe").remove();
+        $('<iframe class="embed-responsive-item" id="youtubeVideo" frameborder="0" allowfullscreen></iframe>')
+            .attr("src", "https://www.youtube.com/embed/" + $(this).val())
+            .appendTo("#youtubeVideo");
+    });
+
+    $("#nuevaAccion").click(function(e) {
+        var nuevaAccion = $("#accionTemplate").html().replace(new RegExp('numAccion', 'g'), numeroAccion);
+        $(".lista-acciones").append(nuevaAccion)
+        numeroAccion += 1
+        autosize($('textarea'));
+    });
+    $(document.body).on('click', '.eliminarAccion', function() {
+        var i = $(this).data('idaccion') + 1
+        $(this).closest(".accion-container").remove();
+        for (; i <= numeroAccion + 1; i++) {
+            $('#eliminar-' + i).attr('data-idaccion', (i - 1)).attr('id', "eliminar-" + (i - 1));;
+            $("textarea[name='cuerpo-" + i + "']").attr('name', "cuerpo-" + (i - 1))
+        }
+        numeroAccion -= 1;
+    });
+    var eliminarAccion = function(e) {
+        $(this).closest(".li-accion").remove();
+    }
+
+    $(document).on('change', ':file', function() {
+        var input = $(this),
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [numFiles, label]);
+    });
+    $( "form" ).submit(function( event ) {
+        var secciones = [];        
+        $( "textarea[name=cuerpo]" ).each(function( index ) {
+        secciones.push($( this ).val());
+        });
+        var seccionesString = secciones.join("&&")
+        $('input[name=secciones]').val(seccionesString);
+        return true;
+});
+</script>
+{% endblock scripts %}

@@ -112,8 +112,11 @@ header {
             position: absolute;
             margin-top: 40px;
             right: 0;
-            &.logged{
+            &.common-menu.logged{
             margin-top: 35px;                
+            }
+            &.user-menu.logged{
+            margin-top: 40px;                
             }
             img.icono-login {
                 height: 14px;
@@ -198,8 +201,9 @@ header {
     #home.header-bg {
         background-image: url("../img/home/header-bg-all.jpg");
         padding-top: 140px;
+        background-position: center left;
         padding-bottom: 45px;
-        background-attachment: fixed;
+        //  background-attachment: fixed;
         @media (min-width: $screen-sm-min) {
             padding-top: 250px;
             padding-bottom: 135px;
@@ -233,9 +237,15 @@ header {
         }
     }
     #simple.header-bg {
-        padding-top: 385px;
+            padding-top: 150px;
         padding-bottom: 30px;
-        background-attachment: fixed;
+         @media (min-width: $screen-sm-min) {
+        padding-top: 200px;
+         }
+          @media (min-width: $screen-md-min) {
+        padding-top: 385px;
+         }
+        //background-attachment: fixed;
         h1 {
             font-size: 40px;
             font-weight: 900;

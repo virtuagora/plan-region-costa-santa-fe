@@ -63,6 +63,21 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ baseUrl() }}/assets/js/bootstrap.min.js"></script>
     <!--=======================-->
+    <script>
+    $( document ).ready(function() {
+        $( '.user-menu-show' ).click(function() {
+          $( '.common-menu' ).hide("slide" );
+          $( '.user-menu' ).show("slide" );
+        });
+         $( '.common-menu-show' ).click(function() {
+          $( '.user-menu' ).hide("slide" );
+          $( '.common-menu' ).show("slide" );
+        });
+    });
+    function logout() {
+  $('#form-salir').submit();
+}
+    </script>
     {% block scripts %}{% endblock %}
 </body>
 

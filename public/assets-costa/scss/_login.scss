@@ -25,7 +25,7 @@
         box-shadow: none;
     }
     button.btn.btn-submit {
-        border-radius: 0;
+        border-radius: 2px;
         border: 0;
         background-color: $azul;
         padding: 15px 10px;
@@ -37,8 +37,12 @@
             background-color: darken($azul, 10%);
         }
     }
+    a#verRecuperar{
+        color:#3a3737;
+        font-size:convert(20,pt,px);
+    }
     a.btn.btn-signup {
-        border-radius: 0;
+        border-radius: 2px;
         border: 0;
         background-color: $verde;
         padding: 10px 10px;
@@ -50,8 +54,11 @@
             background-color: darken($verde, 10%);
         }
     }
+    a.btn-registrarse{
+        font-weight:700;
+    }
     a.btn.btn-aux {
-        border-radius: 0;
+        border-radius: 2px;
         border: 0;
         background-color: #3a3737;
         color: #FFF;
