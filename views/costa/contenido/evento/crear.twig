@@ -1,10 +1,10 @@
-{% extends "costa/master-clean.twig" %} {% set nav = 0 %} {% block titulo %}Crear area{% endblock titulo %} {% block linkhead
+{% extends "costa/master-clean.twig" %} {% set nav = 0 %} {% block titulo %}Crear Actividad{% endblock titulo %} {% block linkhead
 %} {% endblock %} {% block header %} {% endblock header %} {% block body %}
 <div id="" class="form derecho">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12 text-center">
-				<h1>Nueva area</h1>
+				<h1>Nueva Actividad</h1>
 				<hr>
 			</div>
 		</div>
@@ -13,51 +13,49 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-8 col-md-offset-2">
 				<div class="form-group">
-					<h3>Titulo del area</h3>
-					<h6 class="text-info"><b>Nota:</b> Evite que sea muy largo</h6>
+					<h3>Nombre de la actividad</h3>
+					<h6 class="text-info"><b>Nota:</b> Evite un titulo excesivamente largo</h6>
 					<input name="" class="form-control input-lg" />
 				</div>
 			</div>
 		</div>
-		<div class="row">
+        <div class="row">
 			<div class="col-xs-12 col-md-8 col-md-offset-2">
 				<div class="form-group">
-					<h3>Breve descripción para el Home <small>(Max: 150 caracteres)</small></h3>
-					<h6 class="text-info"><b>Nota:</b> La siguiente descripcion es la que se muestra en una parte del Home. Le sugerimos que no superen los 150 caracteres, o que todas las areas tenga.</h6>
-					<textarea name=""  rows="1" class="form-control"></textarea>
+					<h3>Lugar y hora del evento</h3>
+					<h6 class="text-info"><b>Ejemplo:</b> Desde las 16Hs en 25 de Mayo 1682</h6>
+					<input name="" class="form-control" />
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-md-8 col-md-offset-2">
 				<div class="form-group">
-					<h3>Descripción del area</h3>
-					<h6 class="text-info"><b>Nota:</b> La siguiente descripción aparecerá en el listado de Areas de Acción.</h6>
+					<h3>Descripción del evento</h3>
+					<h6 class="text-info"><b>Nota:</b></h6>
 					<textarea name=""  rows="1" class="form-control"></textarea>
+				</div>
+			</div>
+		</div>
+<div class="row">
+			<div class="col-xs-12 col-md-8 col-md-offset-2">
+				<div class="form-group">
+					<h3>URL a mas info</h3>
+					<h6 class="text-info"><b>Nota:</b> Coloque la URL a una web distinta. Ej: http://www.google.com.ar</h6>
+					<div class="input-group">
+  <span class="input-group-addon">http://</span>
+  <input type="text" class="form-control">
+</div>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div id="derecho" class="col-xs-12 col-md-8 col-md-offset-2">
-				<div id="descripcion">
-				</div>
-				<h3>Acciones</h3>
-				<h6 class="text-info"><b>Nota:</b> No le coloque numeración a la descripción. Nosotros lo haremos por usted.</h6>
-				<div class="lista-acciones">
-					<div class="accion-container color-0">
-						<textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la acción..."></textarea>
-					</div>
-				</div>
-				<a id="nuevaAccion" href="javascript:void(0)" class="btn btn-sm btn-info btn-block"><i class="mdi mdi-plus"></i> Agregar una acción</a>
-				<br>
 				<div class="clearfix">
 					<a href="#" class="btn btn-large btn-default ">Cancelar</a>
-					<button type="submit" class="btn btn-lg btn-primary pull-right">Subir nuevo derecho</button>
+					<button type="submit" class="btn btn-success pull-right">Crear actividad</button>
 				</div>
 			</div>
-			<input type="text" name="secciones" value="" hidden>
-			<input type="text" name="categoria" value="1" hidden>
-			<input type="text" name="tags" value="" hidden>
 		</div>
 	</div>
 </div>

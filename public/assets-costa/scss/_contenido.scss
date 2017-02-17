@@ -16,7 +16,15 @@
         box-shadow: none;
     }
     .accion-container {
-        background-color: #f7bd0f;
+        &.color-0{
+        background-color: $amarillo;
+        }
+        &.color-1{
+        background-color: $azul;
+        }
+        &.color-2{
+        background-color: $verde;
+        }
         padding: 10px;
         margin-bottom:20px;
         textarea {

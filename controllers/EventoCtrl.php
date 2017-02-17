@@ -48,7 +48,7 @@ class EventoCtrl extends Controller {
     }
 
     public function verCrear() {
-        $this->render('lpe/contenido/evento/crear.twig');
+        $this->render('costa/contenido/evento/crear.twig');
     }
 
     public function crear() {
