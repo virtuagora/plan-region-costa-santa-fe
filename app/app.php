@@ -105,7 +105,7 @@ $app->get('/test', function () use ($app) {
     $app->render('costa/test.twig');
 });
 
-$app->group('/derecho', function () use ($app, $checkRole) {
+$app->group('/area', function () use ($app, $checkRole) {
     $app->get('/crear', $checkRole('mod'), 'DerechoCtrl:verCrear')->name('shwCrearDerecho');
     $app->post('/crear', $checkRole('mod'), 'DerechoCtrl:crear')->name('runCrearDerecho');
     $app->get('/:idDer', 'DerechoCtrl:ver')->name('shwDerecho');
