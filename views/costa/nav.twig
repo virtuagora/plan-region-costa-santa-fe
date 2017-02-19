@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     {% if user is not empty %}
                 <ul class="nav navbar-nav user-menu" style="display:none">                  
-                    <li><a href="#">Ver perfil</a></li>
+                    <li><a href="{{urlFor('shwUsuario', {'idUsu': user.id})}}">Ver perfil</a></li>
                     {% if user and (user.patrulla_id != null) %}
 <li><a href="{{urlFor('shwIndexAdmin')}}">Administrar</a></li>
                     {% endif %}

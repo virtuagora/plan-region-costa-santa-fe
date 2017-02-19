@@ -29,7 +29,7 @@ class UsuarioCtrl extends RMRController {
         $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
         $datos['contenidos_count'] = $usuario->contenidos()->count();
         $datos['comentarios_count'] = $usuario->comentarios()->count();
-        $this->render('lpe/usuario/ver.twig', array('usuario' => $datos,
+        $this->render('costa/usuario/ver.twig', array('usuario' => $datos,
                                                 'acciones' => $acciones,
                                                 'comentarios' => $comentarios,
                                                 'derechos' => $derechos,
@@ -37,7 +37,7 @@ class UsuarioCtrl extends RMRController {
     }
 
     public function verCambiarClave() {
-        $this->render('/lpe/usuario/cambiar-clave.twig');
+        $this->render('/costa/usuario/cambiar-clave.twig');
     }
 
     public function cambiarClave() {
@@ -64,7 +64,7 @@ class UsuarioCtrl extends RMRController {
 
     public function verModificar() {
         $usuario = $this->session->getUser();
-        $this->render('/lpe/usuario/modificar.twig', array('usuario' => $usuario->toArray(), 'localidades' => ['Rosario','La Capital','General López','Castellanos','General Obligado',
+        $this->render('/costa/usuario/modificar.twig', array('usuario' => $usuario->toArray(), 'localidades' => ['Rosario','La Capital','General López','Castellanos','General Obligado',
                 'San Lorenzo','Las Colonias','Constitución','Caseros','San Jerónimo','San Cristóbal',
                 'Iriondo','San Martín','Vera','Belgrano','San Justo','San Javier','9 de Julio','Garay'],
             'ocupaciones' => ['Estudiante','Docente Nivel Inicial','Docente Nivel Primario',
