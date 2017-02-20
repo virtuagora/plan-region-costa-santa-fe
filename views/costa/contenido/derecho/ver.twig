@@ -1,4 +1,16 @@
-{% extends "costa/master.twig" %} {% set nav = 3 %} {% block titulo %}{{ derecho.titulo }}{% endblock titulo %} {% block
+{% set share_link = derecho.link %}
+{% set twitter_txt = 'Estoy debatiendo acerca del derecho "' ~ derecho.titulo|lower ~ '" ¡Animate vos tambien! ' %}
+
+{% extends "costa/master.twig" %} {% set nav = 3 %} {% block titulo %}{{ derecho.titulo }}{% endblock titulo %}
+
+{% block opengraph %}
+<meta property="og:url"                content="{{derecho.link}}" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="{{ derecho.titulo }} - A toda Costa" />
+<meta property="og:description"        content="Un plan de desarrollo sustentable para Garay y San Javier. Enterate más acerca de esta area de acción. Te invitamos a saber más y a que realices tu aporte directamente o a través de la organización de la que formes parte." />
+<meta property="og:image"              content="{{ baseUrl() }}/assets-costa/img/sharer.png" />
+{% endblock %}
+ {% block
 linkhead %} {% endblock %} {% block header %}
 <div id="simple" class="header-bg area">
     <div class="container">
@@ -31,9 +43,9 @@ linkhead %} {% endblock %} {% block header %}
                             <div class="compartir-box">
                                 <p>Compartir:
                                     <a href="#" data-toggle="tooltip" title="Whatsapp"><img src="{{baseUrl()}}/assets-costa/img/sharer/phone.svg" alt="Whatsapp"></a>
-                                    <a href="#" data-toggle="tooltip" title="Facebook"><img src="{{baseUrl()}}/assets-costa/img/sharer/facebook.svg" alt="facebook"></a>
-                                    <a href="#" data-toggle="tooltip" title="Google+"><img src="{{baseUrl()}}/assets-costa/img/sharer/googleplus.svg" alt="Google+"></a>
-                                    <a href="#" data-toggle="tooltip" title="Twitter"><img src="{{baseUrl()}}/assets-costa/img/sharer/twitter.svg" alt="Twitter"></a>
+                                    <a href="https://www.facebook.com/sharer.php?u={{ share_link }}" target="_blank" data-toggle="tooltip" title="Facebook"><img src="{{baseUrl()}}/assets-costa/img/sharer/facebook.svg" alt="facebook"></a>
+                                    <a href="https://plus.google.com/share?url={{ share_link }}" target="_blank" data-toggle="tooltip" title="Google+"><img src="{{baseUrl()}}/assets-costa/img/sharer/googleplus.svg" alt="Google+"></a>
+                                    <a href="https://twitter.com/share?text={{ twitter_txt }}&url={{ share_link }}&hashtags=nlpe" target="_blank" data-toggle="tooltip" title="Twitter"><img src="{{baseUrl()}}/assets-costa/img/sharer/twitter.svg" alt="Twitter"></a>
                                 </p>
                             </div>
                         </div>
@@ -75,7 +87,15 @@ linkhead %} {% endblock %} {% block header %}
                             </div>
                             <hr>
                         </div>
-                        {% else %} {% endif %} {% for comentario in seccion.comentarios|slice(0,5) %}
+                        {% else %}
+                        <div class="grid-item">
+                                <div class="no-login color-{{seccion.id-1 % 3}}">
+                                    <h3>¿Desea participar comentando?</h3>
+                                    <h3><a href="{{urlFor('shwCrearUsuario')}}" class="btn btn-default">Registrese</a> o <a href="{{urlFor('shwLogin')}}" class="btn btn-default">Inicie sesión</a></h3>
+                                </div>
+                        </div>
+
+                         {% endif %} {% for comentario in seccion.comentarios|slice(0,5) %}
                         <div class="grid-item">
                             <div class="comentario-container">
                                 <a href="{{ urlFor('shwUsuario',{'idUsu': comentario.autor.id}) }}" class="pull-left">
@@ -159,12 +179,21 @@ linkhead %} {% endblock %} {% block header %}
                     {% endif %}
                 </div>
             </div>
-            {% include 'costa/contenido/derecho/comentarioModal.twig' %} {% endfor %}
+            {% endfor %}
         </div>
     </div>
 </div>
 </div>
 </div>
+{% if user and (user.patrulla_id != null) %}
+ {% include 'lpe/contenido/moderar.twig' %}
+  {% endif %}
+<form id="votarSeccion" method="POST">
+    <input type="hidden" type="text" name="postura">
+</form>
+<form id="votarComentario" method="POST">
+    <input type="text" name="valor" style="display:none">
+</form>
 {% endblock body %} {% block scripts %}
 <script src="{{ baseUrl() }}/assets-costa/js/autosize.min.js"></script>
 <script src="{{ baseUrl() }}/assets-costa/js/masonry.pkgd.min.js"></script>
@@ -208,6 +237,15 @@ linkhead %} {% endblock %} {% block header %}
             scrollTop: $("#dejarComentario").offset().top - 250
         }, 1000);
     });
+
+      var votarSeccion = function(id, valor) {
+        var action_no = "{{ urlFor('runVotarSeccion') }}";
+        $('#votarSeccion').find('input[name="postura"]').val(valor)
+        var action_yes = action_no.replace(':idSec', id);
+        $('#votarSeccion').attr('action', action_yes);
+        $('#votarSeccion').submit();
+    }
+
     var verBoxResponder = function (id) {
         $('#respComentario-' + id).toggle();
         $('.grid').masonry();

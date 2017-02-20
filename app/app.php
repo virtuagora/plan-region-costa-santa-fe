@@ -105,6 +105,7 @@ $app->get('/test', function () use ($app) {
     $app->render('costa/test.twig');
 });
 
+// TODO Hice que en vez de derecho, sea /area. logicamente no lo cambies de lo que es derecho..
 $app->group('/area', function () use ($app, $checkRole) {
     $app->get('/crear', $checkRole('mod'), 'DerechoCtrl:verCrear')->name('shwCrearDerecho');
     $app->post('/crear', $checkRole('mod'), 'DerechoCtrl:crear')->name('runCrearDerecho');
@@ -114,27 +115,29 @@ $app->group('/area', function () use ($app, $checkRole) {
     $app->post('/:idDer/modificar', $checkRole('mod'), 'DerechoCtrl:modificar')->name('runModifDerecho');
 });
 
-$app->group('/opinion', function () use ($app, $checkRole) {
+// TODO Hice que en vez de opinion, sea /testimonio. logicamente no lo cambies de lo que es derecho..
+$app->group('/testimonio', function () use ($app, $checkRole) {
     $app->get('/crear', $checkRole('mod'), 'OpinionCtrl:verCrear')->name('shwCrearOpinion');
     $app->post('/crear', $checkRole('mod'), 'OpinionCtrl:crear')->name('runCrearOpinion');
     $app->get('/:idOpi/modificar', $checkRole('mod'), 'OpinionCtrl:verModificar')->name('shwModifOpinion');
     $app->post('/:idOpi/modificar', $checkRole('mod'), 'OpinionCtrl:modificar')->name('runModifOpinion');
 });
 
-$app->group('/participante', function () use ($app, $checkRole) {
-    $app->get('/', $checkRole('mod'), 'ParticipanteCtrl:listar')->name('shwListaPartici');
-    $app->get('/crear', $checkRole('mod'), 'ParticipanteCtrl:verCrear')->name('shwCrearPartici');    
-    $app->post('/crear', $checkRole('mod'), 'ParticipanteCtrl:crear')->name('runCrearPartici');
-});
+// $app->group('/participante', function () use ($app, $checkRole) {
+//     $app->get('/', $checkRole('mod'), 'ParticipanteCtrl:listar')->name('shwListaPartici');
+//     $app->get('/crear', $checkRole('mod'), 'ParticipanteCtrl:verCrear')->name('shwCrearPartici');    
+//     $app->post('/crear', $checkRole('mod'), 'ParticipanteCtrl:crear')->name('runCrearPartici');
+// });
 
-$app->group('/evento', function () use ($app, $checkRole) {
-    $app->get('', 'EventoCtrl:listar')->name('shwListaEvento');
+// TODO Hice que en vez de evento, sea actividad. logicamente no lo cambies de lo que es opinion..
+$app->group('/actividad', function () use ($app, $checkRole) {
+    // $app->get('', 'EventoCtrl:listar')->name('shwListaEvento');
     $app->get('/crear', $checkRole('mod'), 'EventoCtrl:verCrear')->name('shwCrearEvento');
     $app->post('/crear', $checkRole('mod'), 'EventoCtrl:crear')->name('runCrearEvento');
-    $app->get('/:idEve', 'EventoCtrl:ver')->name('shwEvento');
-    $app->post('/:idEve/participar', $checkRole('usr'), 'EventoCtrl:participar')->name('runPartiEvento');
-    $app->get('/:idEve/modificar', $checkRole('mod'), 'EventoCtrl:verModificar')->name('shwModifEvento');
-    $app->post('/:idEve/modificar', $checkRole('mod'), 'EventoCtrl:modificar')->name('runModifEvento');
+    // $app->get('/:idEve', 'EventoCtrl:ver')->name('shwEvento');
+    // $app->post('/:idEve/participar', $checkRole('usr'), 'EventoCtrl:participar')->name('runPartiEvento');
+    // $app->get('/:idEve/modificar', $checkRole('mod'), 'EventoCtrl:verModificar')->name('shwModifEvento');
+    // $app->post('/:idEve/modificar', $checkRole('mod'), 'EventoCtrl:modificar')->name('runModifEvento');
     $app->post('/:idEve/eliminar', $checkRole('mod'), 'EventoCtrl:eliminar')->name('runElimiEvento');
 });
 

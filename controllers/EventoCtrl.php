@@ -2,6 +2,7 @@
 
 class EventoCtrl extends Controller {
 
+    // TODO No  lo usamos
     public function ver($idEve) {
         $vdt = new Validate\QuickValidator([$this, 'notFound']);
         $vdt->test($idEve, new Validate\Rule\NumNatural());
@@ -20,6 +21,7 @@ class EventoCtrl extends Controller {
         ]);
     }
     
+    // 
     public function listar() {
         $eventos = Evento::all()->sortBy('fecha');
         $this->render('lpe/contenido/evento/listar.twig', [
@@ -50,7 +52,13 @@ class EventoCtrl extends Controller {
     public function verCrear() {
         $this->render('costa/contenido/evento/crear.twig');
     }
-
+    // TODO aca te paso estos datos para evento.
+    // titulo - text - Titulo evento
+    // fecha_hasta - date -(si o si)
+    // fecha_hasta - date - (puede ser null)
+    // info - text - Informacion evento, tipo a las 16Hs en San Martin 1555
+    // cuerpo - text -
+    // url - text - para mas info
     public function crear() {
         $req = $this->request;
         $vdt = $this->validarEvento($req->post());

@@ -42,7 +42,7 @@ y San Javier</b></h1>
                     de esta región a partir de proyectos que fortalezcan su desarrollo productivo y turístico; su cultura
                     e identidad, respeten al medio ambiente, y promuevan su crecimiento económico para mejorar la calidad
                     de vida de sus habitantes.<br>
-                <a href="#" class="btn btn-quees">Ver actividades</a>
+                <a href="{{ urlFor('shwActividades') }}" class="btn btn-quees">Ver actividades</a>
                 </p>
             </div>
         </div>
@@ -63,7 +63,7 @@ y San Javier</b></h1>
                 <p>
                     La planificación participativa de los Departamentos Garay y San Javier resulta de gran importancia para <b>asegurar un adecuado desarrollo territorial, que permita dinamizar el sector turístico, generar empleo, nuevas oportunidades económico-productivas, potenciando el uso de los recursos naturales, mejorando la infraestructura de servicios públicos, y revalorizando las capacidades, conocimientos  e identidad locales.</b><br>                    En este sentido, el Plan “A Toda Costa” articula y acuerda con todos los actores locales, públicos y
                     privados las principales acciones tendientes al desarrollo, promoción y consolidación de una región sustentable.<br>
-                <a href="#" class="btn btn-importancia">De donde partimos</a>
+                <a href="{{ urlFor('shwAcerca') }}" class="btn btn-importancia">De donde partimos</a>
                 </p>
             </div>
         </div>
@@ -82,51 +82,22 @@ y San Javier</b></h1>
         <div class="row" style="position:relative;">
             <div class="line"></div>
             <div class="carrousel">
+                                        {% for derecho in derechos %}
                 <div class="col-xs-11 col-md-3 text-center">
                     <div class="line"></div>
+                    {% if loop.first %}
                     <div class="line amarillo first"></div>
-                    <img src="{{ baseUrl() }}/assets-costa/img/ejes/familia.svg" alt="">
-                    <h2 class="titulo"> Calidad social</h2>
-                    <p class="descripcion">Intervenciones en el ámbito de la salud, la educación, el deporte, que atiendan la convivencia pacífica
-                        y el desarrollo de vidas plenas en todas las edades. </p>
-                    <a href="#" class="btn btn-pill btn-amarillo">Participá</a>
+                    {% elseif loop.last %}
+                    <div class="line amarillo last"></div>                    
+                    {% else %}
+                    <div class="line amarillo"></div>                    
+                    {% endif %}
+                    <img src="{{ baseUrl() }}/assets-costa/img/ejes/{{derecho.id}}.svg" alt="">
+                    <h2 class="titulo">{{derecho.titulo}}</h2>
+                    <p class="descripcion">{{derecho.descripcion}}</p>
+                    <a href="{{urlFor('shwDerecho', {'idDer':derecho.id})}}" class="btn btn-pill btn-amarillo">Participá</a>
                 </div>
-                <div class="col-xs-11 col-md-3 text-center">
-                    <div class="line"></div>
-                    <div class="line amarillo"></div>
-                    <img src="{{ baseUrl() }}/assets-costa/img/ejes/familia.svg" alt="">
-                    <h2 class="titulo"> Calidad social</h2>
-                    <p class="descripcion">Intervenciones en el ámbito de la salud, la educación, el deporte, que atiendan la convivencia pacífica
-                        y el desarrollo de vidas plenas en todas las edades. </p>
-                    <a href="#" class="btn btn-pill btn-amarillo">Participá</a>
-                </div>
-                <div class="col-xs-11 col-md-3 text-center">
-                    <div class="line"></div>
-                    <div class="line amarillo"></div>
-                    <img src="{{ baseUrl() }}/assets-costa/img/ejes/familia.svg" alt="">
-                    <h2 class="titulo"> Calidad social</h2>
-                    <p class="descripcion">Intervenciones en el ámbito de la salud, la educación, el deporte, que atiendan la convivencia pacífica
-                        y el desarrollo de vidas plenas en todas las edades. </p>
-                    <a href="#" class="btn btn-pill btn-amarillo">Participá</a>
-                </div>
-                <div class="col-xs-11 col-md-3 text-center">
-                    <div class="line"></div>
-                    <div class="line amarillo"></div>
-                    <img src="{{ baseUrl() }}/assets-costa/img/ejes/familia.svg" alt="">
-                    <h2 class="titulo"> Calidad social</h2>
-                    <p class="descripcion">Intervenciones en el ámbito de la salud, la educación, el deporte, que atiendan la convivencia pacífica
-                        y el desarrollo de vidas plenas en todas las edades. </p>
-                    <a href="#" class="btn btn-pill btn-amarillo">Participá</a>
-                </div>
-                <div class="col-xs-11 col-md-3 text-center">
-                    <div class="line"></div>
-                    <div class="line amarillo last"></div>
-                    <img src="{{ baseUrl() }}/assets-costa/img/ejes/familia.svg" alt="">
-                    <h2 class="titulo"> Calidad social</h2>
-                    <p class="descripcion">Intervenciones en el ámbito de la salud, la educación, el deporte, que atiendan la convivencia pacífica
-                        y el desarrollo de vidas plenas en todas las edades. </p>
-                    <a href="#" class="btn btn-pill btn-amarillo">Participá</a>
-                </div>
+                        {%endfor%}
             </div>
         </div>
         <div class="row footer-carrousel">

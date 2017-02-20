@@ -4,24 +4,9 @@ class PortalCtrl extends Controller {
 
     public function verIndex() {
         $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
-        $eventos = Evento::whereDate('fecha', '>=', date('Y-m-d'))->orderBy('fecha', 'asc')->take(2)->get()->toArray();
-        $ajustes = Ajuste::whereIn('key', ['titulo', 'intro', 'videos'])->get();
-        foreach ($ajustes as $aju) {
-            if ($aju->key == 'titulo') {
-                $titulo = $aju->value;
-            } elseif ($aju->key == 'intro') {
-                $intro = $aju->value;
-            } elseif ($aju->key == 'videos') {
-                $videos = explode('&&', $aju->value);
-            }
-        }
         $this->render('costa/portal/inicio.twig',  [
-            'derechos' => $derechos,
-            'eventos' => $eventos,
-            'titulo' => $titulo,
-            'intro' => $intro,
-            'videos' => $videos,
-        ]);
+            'derechos' => $derechos
+        ]   );
     }
 
     public function verPortal() {
@@ -32,34 +17,26 @@ class PortalCtrl extends Controller {
         $this->render('costa/registro/login-static.twig');
     }
 
-// public function verAntecedentes() {
-//         $this->render('lpe/contenido/static/antecedentes.twig');
-//     }
-
-//     public function verPropuesta() {
-//         $this->render('lpe/contenido/static/propuesta.twig');
-    // }
-
      public function verAcerca() {
         $this->render('costa/portal/acerca.twig');
     }
+
+    // TODO Controlame si esta bien.. lo saque de listar eventos.
+    // Esto se mostraria en ver actividades.. esta bien, no?
     public function verActividades() {
-        $this->render('costa/portal/actividades.twig');
+        $eventos = Evento::all()->sortBy('fecha');
+        $this->render('costa/portal/actividades.twig', [
+            'eventos' => $eventos
+        ]);
     }
     public function verAreas() {
-        $this->render('costa/portal/areas.twig');
+         $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
+        $this->render('costa/portal/areas.twig',  [
+            'derechos' => $derechos
+        ]   );
     }
 
-//     public function verTutorial() {
-//         $this->render('lpe/contenido/static/tutorial.twig');
-//     }
-
-
-//  public function verFundamentos() {
-//         $this->render('lpe/contenido/static/fundamentos.twig');
-//     }
-
-
+    // No lo usamos
     public function verTos() {
         $tos = Ajuste::where('key', 'tos')->firstOrFail();
         $this->render('lpe/contenido/static/tos.twig', ['tos' => $tos->toArray()]);

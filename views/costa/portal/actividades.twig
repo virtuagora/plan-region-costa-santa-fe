@@ -20,84 +20,32 @@
                 </p>
             </div>
         </div>
+        {% for actividad in eventos %}
         <div class="actividad">
             <div class="row fila-primera">
                 <div class="col-xs-12 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 text-left">
                     <div class="linea width-xs"></div>
-                    <h1 class="black">23/02 al 24/04</h1>
-                     <p class="aux-xs"><i>Desde las 16Hs en 25 de Mayo 1682</i></p>
+                    <h1 class="black">{{evento.fecha_desde|date("d/m")}}{{ evento.fecha_hasta != null ? ' al ' ~ evento.fecha_hasta|date("d/m") : ''}}</h1>
+                     <p class="aux-xs"><i>{{actividad.info}}</i></p>
                 </div>
                 <div class="col-xs-12 col-sm-7 col-md-6 text-left">
                     <div class="linea"></div>
-                    <h1 class="bold">Reuniones con distintos sectores que hacen al desarrollo economico y productivo de la region</h1>
+                    <h1 class="bold">{{actividad.titulo}}</h1>
                 </div>
             </div>
             <div class="row fila-segunda">
                 <div class="col-xs-12 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 text-left">
-                    <p class="hidden-xs"><i>Desde las 16Hs en 25 de Mayo 1682</i></p>
+                    <p class="hidden-xs"><i>{{actividad.info}}</i></p>
                 </div>
                 <div class="col-xs-12 col-sm-7 col-md-6 text-left">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit asperiores ipsa odit excepturi
-                        nulla quae qui hic alias voluptate, nobis voluptates rerum similique dolor distinctio, minus, officiis
-                        vitae. Tempora, consequatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim porro
-                        modi, nesciunt eveniet, vero dicta saepe! Quos velit vel earum, animi facilis rem mollitia odio omnis.
-                        Odit similique repellendus est!</p>
-                    <p class="more-info">Mas informacion: http://www.google.com/</p>
+                    <p>{{actividad.cuerpo}}</p>
+                    {% if actividad.url != null %}
+                    <p class="more-info">Mas informacion: {{actividad.url}}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
-        <div class="actividad">
-            <div class="row fila-primera">
-                <div class="col-xs-12 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 text-left">
-                    <div class="linea width-xs"></div>
-                    <h1 class="black">23/02 al 24/04</h1>
-                     <p class="aux-xs"><i>Desde las 16Hs en 25 de Mayo 1682</i></p>
-                </div>
-                <div class="col-xs-12 col-sm-7 col-md-6 text-left">
-                    <div class="linea"></div>
-                    <h1 class="bold">Reuniones con distintos sectores que hacen al desarrollo economico y productivo de la region</h1>
-                </div>
-            </div>
-            <div class="row fila-segunda">
-                <div class="col-xs-12 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 text-left">
-                    <p class="hidden-xs"><i>Desde las 16Hs en 25 de Mayo 1682</i></p>
-                </div>
-                <div class="col-xs-12 col-sm-7 col-md-6 text-left">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit asperiores ipsa odit excepturi
-                        nulla quae qui hic alias voluptate, nobis voluptates rerum similique dolor distinctio, minus, officiis
-                        vitae. Tempora, consequatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim porro
-                        modi, nesciunt eveniet, vero dicta saepe! Quos velit vel earum, animi facilis rem mollitia odio omnis.
-                        Odit similique repellendus est!</p>
-                    <p class="more-info">Mas informacion: http://www.google.com/</p>
-                </div>
-            </div>
-        </div>
-        <div class="actividad">
-            <div class="row fila-primera">
-                <div class="col-xs-12 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 text-left">
-                    <div class="linea width-xs"></div>
-                    <h1 class="black">23/02 al 24/04</h1>
-                     <p class="aux-xs"><i>Desde las 16Hs en 25 de Mayo 1682</i></p>
-                </div>
-                <div class="col-xs-12 col-sm-7 col-md-6 text-left">
-                    <div class="linea"></div>
-                    <h1 class="bold">Reuniones con distintos sectores que hacen al desarrollo economico y productivo de la region</h1>
-                </div>
-            </div>
-            <div class="row fila-segunda">
-                <div class="col-xs-12 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 text-left">
-                    <p class="hidden-xs"><i>Desde las 16Hs en 25 de Mayo 1682</i></p>
-                </div>
-                <div class="col-xs-12 col-sm-7 col-md-6 text-left">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit asperiores ipsa odit excepturi
-                        nulla quae qui hic alias voluptate, nobis voluptates rerum similique dolor distinctio, minus, officiis
-                        vitae. Tempora, consequatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim porro
-                        modi, nesciunt eveniet, vero dicta saepe! Quos velit vel earum, animi facilis rem mollitia odio omnis.
-                        Odit similique repellendus est!</p>
-                    <p class="more-info">Mas informacion: http://www.google.com/</p>
-                </div>
-            </div>
-        </div>
+         {% endfor %}
     </div>
 </div>
 {% endblock body %} {% block scripts %} {% endblock scripts %}

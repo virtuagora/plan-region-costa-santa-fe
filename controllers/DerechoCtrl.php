@@ -2,6 +2,8 @@
 
 class DerechoCtrl extends Controller {
 
+    // TODO Matu, pregunta. Los comentarios tienen su karma. Funciona eso?
+    // Porque no me aparece a mi.
     public function ver($idDer) {
         $vdt = new Validate\QuickValidator([$this, 'notFound']);
         $vdt->test($idDer, new Validate\Rule\NumNatural());
@@ -24,12 +26,15 @@ class DerechoCtrl extends Controller {
     }
 
     public function verCrear() {
-        $categorias = Categoria::all();
-        $this->render('costa/contenido/derecho/crear.twig', [
-            'categorias' => $categorias->toArray()
-        ]);
+        //$categorias = Categoria::all();
+        $this->render('costa/contenido/derecho/crear.twig');
     }
-
+    // TODO Este es el listado que te paso con su nombre
+    // titulo - input text
+    // orden - number de 1 a 6
+    // resumen - textarea
+    // cuerpo - textarea
+    // secciones, como siempre y como se trabaja aca.. asi que no hay mucho mas.
     public function crear() {
         $req = $this->request;
         $vdt = $this->validarDerecho($req->post());
@@ -60,6 +65,7 @@ class DerechoCtrl extends Controller {
             }
         }
         $this->flash('success', 'El derecho se creó exitosamente.');
+        // TODO Redirigilo a shwIndexAdmin
         $this->redirectTo('shwDerecho', ['idDer' => $derecho->id]);
     }
     

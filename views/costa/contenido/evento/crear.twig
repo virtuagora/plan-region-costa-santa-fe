@@ -1,131 +1,135 @@
-{% extends "costa/master-clean.twig" %} {% set nav = 0 %} {% block titulo %}Crear Actividad{% endblock titulo %} {% block linkhead
-%} {% endblock %} {% block header %} {% endblock header %} {% block body %}
+{% extends "costa/master-clean.twig" %} {% set nav = 0 %} {% block titulo %}Crear Actividad{% endblock titulo %} {% block
+linkhead %}
+<link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets-costa/css/jquery-ui/jquery-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets-costa/css/timepicker/jquery.timepicker.css" /> {% endblock %} {% block header %} {% endblock header %} {% block body %}
 <div id="" class="form derecho">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-xs-12 text-center">
-				<h1>Nueva Actividad</h1>
-				<hr>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-md-8 col-md-offset-2">
-				<div class="form-group">
-					<h3>Nombre de la actividad</h3>
-					<h6 class="text-info"><b>Nota:</b> Evite un titulo excesivamente largo</h6>
-					<input name="" class="form-control input-lg" />
-				</div>
-			</div>
-		</div>
+    <div class="container-fluid">
         <div class="row">
-			<div class="col-xs-12 col-md-8 col-md-offset-2">
-				<div class="form-group">
-					<h3>Lugar y hora del evento</h3>
-					<h6 class="text-info"><b>Ejemplo:</b> Desde las 16Hs en 25 de Mayo 1682</h6>
-					<input name="" class="form-control" />
+            <div class="col-xs-12 text-center">
+                <h1>Nueva Actividad</h1>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <form action="{{ urlFor('runCrearEvento') }}" method="POST">
+            <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Nombre de la actividad</h3>
+                        <h6 class="text-info"><b>Nota:</b> Evite un titulo excesivamente largo</h6>
+                        <input name="" class="form-control input-lg" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-4 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Desde</h3>
+                        <h6 class="text-info"><b>Nota:</b> Dia que es el evento o que comienza el evento.
+                        <br>
+                        <br>
+                        </h6>
+                        <div id="datepicker" style="margin: 10px auto 10px;"></div>
+                        <input id="guardarFecha" hidden>
+                        <input id="fecha-final" name="fecha_desde" type="text" style="display:none;" />
+                        <input id="txt-fecha" type="text" class="form-control text-center input-lg" placeholder="Seleccione la fecha" readonly />
+
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <div class="form-group">
+                        <h3>Hasta</h3>
+                        <h6 class="text-info"><b>Nota:</b> Dia en que termina el evento.<br>Si es un evento que dura 1 dia NO COMPLETE NADA.</h6>
+                        <div id="datepicker2" style="margin: 10px auto 10px;"></div>
+                        <input id="guardarFecha2" hidden>
+                        <input id="fecha-final2" name="fecha_hasta" type="text" style="display:none;" />
+                        <input id="txt-fecha2" type="text" class="form-control text-center input-lg" placeholder="Seleccione la fecha" readonly />
+                        <br>
+                        <a id="limpiar-hasta" href="javascript:void(0)" class="btn btn-default btn-sm">Limpiar fecha "Hasta"</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Lugar y hora del evento</h3>
+                        <h6 class="text-info"><b>Ejemplo:</b> Desde las 16Hs en 25 de Mayo 1682</h6>
+                        <input name="" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Descripción del evento</h3>
+                        <h6 class="text-info"><b>Nota:</b></h6>
+                        <textarea name="" rows="1" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>URL a mas info</h3>
+                        <h6 class="text-info"><b>Nota:</b> Coloque la URL a una web distinta. Ej: http://www.google.com.ar</h6>
+                        <div class="input-group">
+                            <span class="input-group-addon">http://</span>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="clearfix">
+					<a href="{{urlFor('shwIndexAdmin')}}" class="btn btn-large btn-default ">Cancelar</a>
+					<button type="submit" class="btn btn-submit pull-right"><i class="fa fa-check fa-fw"></i> Editar</button>
 				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-md-8 col-md-offset-2">
-				<div class="form-group">
-					<h3>Descripción del evento</h3>
-					<h6 class="text-info"><b>Nota:</b></h6>
-					<textarea name=""  rows="1" class="form-control"></textarea>
-				</div>
-			</div>
-		</div>
-<div class="row">
-			<div class="col-xs-12 col-md-8 col-md-offset-2">
-				<div class="form-group">
-					<h3>URL a mas info</h3>
-					<h6 class="text-info"><b>Nota:</b> Coloque la URL a una web distinta. Ej: http://www.google.com.ar</h6>
-					<div class="input-group">
-  <span class="input-group-addon">http://</span>
-  <input type="text" class="form-control">
-</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div id="derecho" class="col-xs-12 col-md-8 col-md-offset-2">
-				<div class="clearfix">
-					<a href="#" class="btn btn-large btn-default ">Cancelar</a>
-					<button type="submit" class="btn btn-success pull-right">Crear actividad</button>
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock body %} {% block scripts %}
-<script src="{{ baseUrl() }}/assets-lpe/js/autosize.min.js"></script>
-<script id="accionTemplate" type="text/template">
-    <div class="accion-container color-numColor">
-        <a id="eliminar-numAccion" href="javascript:void(0)" data-idaccion='numAccion' class="eliminarAccion pull-right" style="font-size:20px;"><i class="mdi mdi-close"></i></a>
-        <textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la acción..."></textarea>
-    </div>
-</script>
+<script src="{{ baseUrl() }}/assets-costa/js/autosize.min.js"></script>
+<script src="{{ baseUrl() }}/assets-costa/js/jquery-ui/jquery-ui.min.js"></script>
+<script src="{{ baseUrl() }}/assets-costa/js/jquery-ui/datepicker-es.js"></script>
 <script>
-    var numeroAccion = 2;
-    $(document).ready(function() {
-    //Events
-    // $("a.eliminarArticulo").on("click", eliminarArticulo);
-    autosize($('textarea'));
-
-    $(':file').on('fileselect', function(event, numFiles, label) {
-        var input = $(this).parents('.input-group').find(':text'),
-            log = numFiles > 1 ? numFiles + ' files selected' : label;
-        if(numFiles > 1 || numFiles == 0){
-            alert('Por favor, seleccione solo 1 archivo');
-        } else if(numFiles == 1){
-            input.val(log);
-        }
-    });
-
-
-    });
-    $('input[name=video]').change(function() {
-        $("#youtubeVideo iframe").remove();
-        $('<iframe class="embed-responsive-item" id="youtubeVideo" frameborder="0" allowfullscreen></iframe>')
-            .attr("src", "https://www.youtube.com/embed/" + $(this).val())
-            .appendTo("#youtubeVideo");
-    });
-
-    $("#nuevaAccion").click(function(e) {
-        var nuevaAccion = $("#accionTemplate").html().replace(new RegExp('numAccion', 'g'), numeroAccion).replace(new RegExp('numColor', 'g'), (numeroAccion-1)%3 );
-        $(".lista-acciones").append(nuevaAccion)
-        numeroAccion += 1
+    $(document).ready(function () {
         autosize($('textarea'));
-    });
-    $(document.body).on('click', '.eliminarAccion', function() {
-        var i = $(this).data('idaccion') + 1
-        $(this).closest(".accion-container").remove();
-        for (; i <= numeroAccion + 1; i++) {
-            $('#eliminar-' + i).attr('data-idaccion', (i - 1)).attr('id', "eliminar-" + (i - 1));;
-            $("textarea[name='cuerpo-" + i + "']").attr('name', "cuerpo-" + (i - 1))
-        }
-        numeroAccion -= 1;
-    });
-    var eliminarAccion = function(e) {
-        $(this).closest(".li-accion").remove();
-    }
-
-    $(document).on('change', ':file', function() {
-        var input = $(this),
-            numFiles = input.get(0).files ? input.get(0).files.length : 1,
-            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-        input.trigger('fileselect', [numFiles, label]);
-    });
-    $( "form" ).submit(function( event ) {
-        var secciones = [];        
-        $( "textarea[name=cuerpo]" ).each(function( index ) {
-        secciones.push($( this ).val());
+        $("#datepicker").datepicker({
+            numberOfMonths: 1,
+            dateFormat: 'DD, dd MM yy',
+            altField: "#guardarFecha",
+            altFormat: "yy-mm-dd",
+            minDate: 0,
+            onSelect: function () {
+                $('#txt-fecha').val(this.value);
+            }
         });
-        var seccionesString = secciones.join("&&")
-        $('input[name=secciones]').val(seccionesString);
-        return true;
-});
+        $("#datepicker2").datepicker({
+            numberOfMonths: 1,
+            dateFormat: 'DD, dd MM yy',
+            altField: "#guardarFecha2",
+            altFormat: "yy-mm-dd",
+            minDate: 0,
+            onSelect: function () {
+                $('#txt-fecha2').val(this.value);
+            }
+        });
+    });
+
+    $('#limpiar-hasta').click(function () {
+       $("#guardarFecha2").val(0);
+       $('#txt-fecha2').val('');
+       $('#fecha-final2').val('');
+    });
+
+
+    $('form').submit(function (e) {
+        var fecha = $("#guardarFecha").val()
+        var fecha2 = $("#guardarFecha2").val()
+        fecha += ' ' + $('#timepicker').val() + ':00';
+        fecha += ' ' + $('#timepicker2').val() + ':00';
+        $('#fecha-final').val(fecha);
+        $('#fecha-final2').val(fecha);
+    })
 </script>
 {% endblock scripts %}

@@ -19,16 +19,14 @@ class OpinionCtrl extends Controller {
     }
 
     public function verCrear() {
-        $derechos = Contenido::where('contenible_type', 'Derecho')->get();
-        $eventos = Evento::all();
-        $participantes = Participante::all();
-        $this->render('lpe/contenido/opinion/crear.twig', [
-            'derechos' => $derechos->toArray(),
-            'eventos' => $eventos->toArray(),
-            'participantes' => $participantes->toArray(),
-        ]);
+        $this->render('costa/contenido/opinion/crear.twig');
     }
 
+    // TODO Esto es lo que te paso de lo que seria un testimonio
+    // persona - text - Nombre y apellido
+    // cargo - text - Cargo en si..
+    // orden - number - El orden en que va a estar
+    // cuerpo - text - El testimonio en si.
     public function crear() {
         $req = $this->request;
         $vdt = $this->validarOpinion($req->post());
@@ -40,9 +38,11 @@ class OpinionCtrl extends Controller {
         $opinion->participante_id = $vdt->getData('participante');
         $opinion->save();
         $this->flash('success', 'La opinión se creó exitosamente.');
+        // TODO Redigilo al shwIndexAdmin
         $this->redirectTo('shwDerecho', array('idDer' => $opinion->derecho_id));
     }
     
+    // TODO no vamoos a modificar. Que borre.
     public function verModificar($idOpi) {
         $vdt = new Validate\QuickValidator([$this, 'notFound']);
         $vdt->test($idOpi, new Validate\Rule\NumNatural());
@@ -51,6 +51,7 @@ class OpinionCtrl extends Controller {
         $this->render('lpe/contenido/opinion/editar.twig', ['opinion' => $datos]);
     }
 
+    // TODO no vamoos a modificar. Que borre.
     public function modificar($idOpi) {
         $vdt = new Validate\QuickValidator([$this, 'notFound']);
         $vdt->test($idOpi, new Validate\Rule\NumNatural());
@@ -62,6 +63,8 @@ class OpinionCtrl extends Controller {
         $this->flash('success', 'Los datos de la opinion fueron modificados exitosamente.');
         $this->redirectTo('shwOpinion', ['idOpi' => $idOpi]);
     }
+
+    // TODO habria que hacer un ELIMINAR opinion.
 
     private function validarOpinion($data) {
         $vdt = new Validate\Validator();

@@ -200,7 +200,7 @@ class PartidoCtrl extends RMRController {
             throw new TurnbackException($vdt->getErrors());
         }
         $partido = Partido::findOrFail($vdt->getData('idPar'));
-        // TODO que pasa si el usuario no está en el partido?
+        // que pasa si el usuario no está en el partido?
         $usuario = Usuario::where(array('id' => $vdt->getData('idUsu'),
                                         'partido_id' => $vdt->getData('idPar')))->first();
         if ($usuario->id == $partido->creador_id) {

@@ -4,11 +4,11 @@ class AdminCtrl extends Controller {
 
     public function verAdminAjustes() {
         $ajustes = Ajuste::all();
-        $this->render('lpe/admin/ajustes.twig', array('ajustes' => $ajustes->toArray()));
+        $this->render('costa/admin/ajustes.twig', array('ajustes' => $ajustes->toArray()));
     }
 
     public function verExportar() {
-        $this->render('lpe/admin/exportar.twig');
+        $this->render('costa/admin/exportar.twig');
     }
 
     public function verEmails() {
@@ -33,7 +33,7 @@ class AdminCtrl extends Controller {
 
     public function verEstadisticas() {
         $usuarios = Usuario::count();
-        $this->render('lpe/admin/estadisticas.twig', array('usuarios' => $usuarios));
+        $this->render('costa/admin/estadisticas.twig', array('usuarios' => $usuarios));
     }
 
     public function adminAjustes() {
@@ -61,7 +61,7 @@ class AdminCtrl extends Controller {
     
     public function verCrearModerador() {
         $mods = Usuario::whereNotNull('patrulla_id')->get()->toArray();
-        $this->render('lpe/admin/moderadores.twig', ['moderadores' => $mods]);
+        $this->render('costa/admin/moderadores.twig', ['moderadores' => $mods]);
     }
     
     public function crearModerador() {
@@ -119,7 +119,12 @@ class AdminCtrl extends Controller {
     }
 
     public function verIndexAdmin() {
-        $this->render('lpe/admin/indexAdmin.twig');
+         $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
+         //TODO Hacer que tambien me traiga el listado de Eventos/Actividades, pasamelo como "eventos"
+         //TODO Hacer que tambien me traiga el listado de Testimonios, pasamelo como "testimonios"
+        $this->render('costa/admin/indexAdmin.twig', [
+            'derechos' => $derechos
+        ]   );
     }
     
     public function verSubirImagen() {
