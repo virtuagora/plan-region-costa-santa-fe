@@ -89,7 +89,7 @@ linkhead %} {% endblock %} {% block header %}
                         </div>
                         {% else %}
                         <div class="grid-item">
-                                <div class="no-login color-{{seccion.id-1 % 3}}">
+                                <div class="no-login color-{{(seccion.id-1) % 3}}">
                                     <h3>¿Desea participar comentando?</h3>
                                     <h3><a href="{{urlFor('shwCrearUsuario')}}" class="btn btn-default">Registrese</a> o <a href="{{urlFor('shwLogin')}}" class="btn btn-default">Inicie sesión</a></h3>
                                 </div>
@@ -166,7 +166,7 @@ linkhead %} {% endblock %} {% block header %}
                         {% endfor %}
                         <div class="grid-item">
                             <a href="#" class="ver-mas">
-                                <div class="ver-mas-container color-{{seccion.id-1 % 3}}">
+                                <div class="ver-mas-container color-{{(seccion.id-1) % 3}}">
                                     <h4>Ver todos los comentarios</h4>
                                 </div>
                             </a>
