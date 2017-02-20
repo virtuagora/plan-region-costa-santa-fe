@@ -7,7 +7,7 @@ class DerechoCtrl extends Controller {
     public function ver($idDer) {
         $vdt = new Validate\QuickValidator([$this, 'notFound']);
         $vdt->test($idDer, new Validate\Rule\NumNatural());
-        $derecho = Derecho::with('contenido.tags')->findOrFail($idDer);
+        $derecho = Derecho::with('contenido')->findOrFail($idDer);
         $contenido = $derecho->contenido;
         $datosDer = array_merge($contenido->toArray(), $derecho->toArray());
         
@@ -26,7 +26,6 @@ class DerechoCtrl extends Controller {
     }
 
     public function verCrear() {
-        //$categorias = Categoria::all();
         $this->render('costa/contenido/derecho/crear.twig');
     }
     // TODO Este es el listado que te paso con su nombre
@@ -41,8 +40,6 @@ class DerechoCtrl extends Controller {
         $autor = $this->session->getUser();
         $derecho = new Derecho;
         $derecho->descripcion = $vdt->getData('descripcion');
-        $derecho->video = $vdt->getData('video');
-        $derecho->imagen = is_uploaded_file($_FILES['archivo']['tmp_name']);
         $derecho->save();
         $acciones = $vdt->getData('secciones');
         foreach ($acciones as $accion) {
@@ -53,20 +50,14 @@ class DerechoCtrl extends Controller {
         }
         $contenido = new Contenido;
         $contenido->titulo = $vdt->getData('titulo');
+        $contenido->resumen = $vdt->getData('resumen');
+        $contenido->orden = $vdt->getData('orden');
         $contenido->puntos = 0;
-        $contenido->categoria_id = 1;
         $contenido->autor()->associate($autor);
         $contenido->contenible()->associate($derecho);
         $contenido->save();
-        if ($derecho->imagen) {
-            $subida = $this->subirImagen($derecho->id);
-            if (!$subida) {
-                throw new TurnbackException('Error al cargar la imagen');
-            }
-        }
-        $this->flash('success', 'El derecho se creó exitosamente.');
-        // TODO Redirigilo a shwIndexAdmin
-        $this->redirectTo('shwDerecho', ['idDer' => $derecho->id]);
+        $this->flash('success', 'El área se creó exitosamente.');
+        $this->redirectTo('shwIndexAdmin');
     }
     
     public function verModificar($idDer) {
@@ -78,7 +69,6 @@ class DerechoCtrl extends Controller {
         $datos = array_merge($contenido->toArray(), $derecho->toArray());
         $this->render('costa/contenido/derecho/editar.twig', [
             'derecho' => $datos,
-            'categorias' => $categorias
         ]);
     }
 
@@ -91,11 +81,10 @@ class DerechoCtrl extends Controller {
         $req = $this->request;
         $vdt = $this->validarDerecho($req->post());
         $derecho->descripcion = $vdt->getData('descripcion');
-        $derecho->video = $vdt->getData('video');
-        $imagenSubida = is_uploaded_file($_FILES['archivo']['tmp_name']);
-        $derecho->imagen = ($derecho->imagen || $imagenSubida);
         $derecho->save();
         $contenido->titulo = $vdt->getData('titulo');
+        $contenido->resumen = $vdt->getData('resumen');
+        $contenido->orden = $vdt->getData('orden');
         $contenido->save();
         $accNew = $vdt->getData('secciones');
         $accOld = $derecho->secciones;
@@ -107,14 +96,8 @@ class DerechoCtrl extends Controller {
                 $accion->save();
             }
         }
-        if ($imagenSubida) {
-            $subida = $this->subirImagen($derecho->id);
-            if (!$subida) {
-                throw new TurnbackException('Error al cargar la imagen');
-            }
-        }
-        $this->flash('success', 'Los datos del derecho fueron modificados exitosamente.');
-        $this->redirectTo('shwDerecho', array('idDer' => $idDer));
+        $this->flash('success', 'Los datos del área fueron modificados exitosamente.');
+        $this->redirectTo('shwIndexAdmin');
     }
     
     public function votar($idSec) {
@@ -143,8 +126,8 @@ class DerechoCtrl extends Controller {
         $vdt->addRule('titulo', new Validate\Rule\MinLength(1))
             ->addRule('titulo', new Validate\Rule\MaxLength(256))
             ->addRule('descripcion', new Validate\Rule\MinLength(4))
-            ->addRule('video', new Validate\Rule\MinLength(8))
-            ->addRule('video', new Validate\Rule\MaxLength(16))
+            ->addRule('resumen', new Validate\Rule\MinLength(4))
+            ->addRule('orden', new Validate\Rule\NumNatural())
             ->addRule('secciones', new Validate\Rule\MinLength(4))
             ->addRule('secciones', new Validate\Rule\MaxLength(5120))
             ->addFilter('secciones', FilterFactory::explode('&&'));

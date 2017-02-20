@@ -13,10 +13,6 @@ abstract class Contenible extends Eloquent {
         return $this->morphOne('Contenido', 'contenible')->withTrashed();
     }
 
-    public function comentarios() {
-        return $this->morphMany('Comentario', 'comentable');
-    }
-
     public function getIdentidadAttribute() {
         return $this->contenido->titulo;
     }

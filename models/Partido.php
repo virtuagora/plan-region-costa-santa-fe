@@ -20,10 +20,6 @@ class Partido extends Eloquent {
         return $this->hasMany('Usuario');
     }
 
-    public function contacto() {
-        return $this->morphOne('Contacto', 'contactable');
-    }
-
     public function contenidos() {
         return $this->hasMany('Contenido', 'impulsor_id');
     }

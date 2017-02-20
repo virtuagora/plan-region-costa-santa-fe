@@ -64,11 +64,12 @@ class EventoCtrl extends Controller {
         $vdt = $this->validarEvento($req->post());
         $autor = $this->session->getUser();
         $evento = new Evento;
-        $evento->cuerpo = $vdt->getData('cuerpo');
+        $evento->descripcion = $vdt->getData('descripcion');
         $evento->lugar = $vdt->getData('lugar');
-        $evento->fecha = Carbon\Carbon::parse($vdt->getData('fecha'));
+        $evento->fechaDesde = Carbon\Carbon::parse($vdt->getData('fecha_desde'));
+        $evento->fechaHasta = Carbon\Carbon::parse($vdt->getData('fecha_hasta'));
         $evento->titulo = $vdt->getData('titulo');
-        $evento->coordenadas = '';
+        $evento->info = $vdt->getData('info');
         $evento->autor()->associate($autor);
         $evento->save();
         $this->flash('success', 'Su evento fue creado exitosamente.');
@@ -112,13 +113,13 @@ class EventoCtrl extends Controller {
     private function validarEvento($data) {
         $vdt = new Validate\Validator();
         $vdt->addRule('titulo', new Validate\Rule\MinLength(1))
-            ->addRule('titulo', new Validate\Rule\MaxLength(128))
             ->addRule('lugar', new Validate\Rule\MinLength(1))
-            ->addRule('lugar', new Validate\Rule\MaxLength(128))
-            ->addRule('fecha', new Validate\Rule\Date('Y-m-d H:i:s'))
-            ->addRule('cuerpo', new Validate\Rule\MinLength(2))
-            ->addRule('cuerpo', new Validate\Rule\MaxLength(8192))
-            ->addFilter('cuerpo', FilterFactory::escapeHTML());
+            ->addRule('fecha_desde', new Validate\Rule\Date('Y-m-d'))
+            ->addRule('fecha_hasta', new Validate\Rule\Date('Y-m-d'))
+            ->addRule('descripcion', new Validate\Rule\MinLength(1))
+            ->addRule('info', new Validate\Rule\MinLength(1))
+            ->addOptional('fecha_hasta')
+            ->addOptional('info');
         if (!$vdt->validate($data)) {
             throw new TurnbackException($vdt->getErrors());
         }

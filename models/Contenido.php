@@ -3,13 +3,11 @@
 class Contenido extends Eloquent {
     use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-    //$table = 'contenidos';
-
+    protected $table = 'contenidos';
     protected $dates = ['deleted_at'];
-    protected $visible = ['id', 'titulo', 'contenible_id', 'contenible_type', 'impulsor_id', 'puntos', 'created_at',
-                          'link', 'categoria', 'autor', 'contenible', 'tags', 'referido'];
+    protected $visible = ['id', 'titulo', 'contenible_id', 'contenible_type', 'puntos', 'created_at',
+                          'link', 'resumen'];
     protected $appends = ['link'];
-    protected $with = ['autor', 'categoria'];
 
     public function contenible() {
         return $this->morphTo();
@@ -17,26 +15,6 @@ class Contenido extends Eloquent {
 
     public function autor() {
         return $this->belongsTo('Usuario');
-    }
-
-    public function impulsor() {
-        return $this->belongsTo('Partido');
-    }
-
-    public function categoria() {
-        return $this->belongsTo('Categoria');
-    }
-
-    public function tags() {
-        return $this->morphToMany('Tag', 'taggable');
-    }
-
-    public function referido() {
-        return $this->belongsTo('Contenido', 'referido_id');
-    }
-
-    public function referentes() {
-        return $this->hasMany('Contenido', 'referido_id');
     }
 
     public function getLinkAttribute() {

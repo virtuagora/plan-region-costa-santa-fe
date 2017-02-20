@@ -6,7 +6,7 @@ class PortalCtrl extends Controller {
         $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
         $this->render('costa/portal/inicio.twig',  [
             'derechos' => $derechos
-        ]   );
+        ]);
     }
 
     public function verPortal() {
@@ -115,7 +115,7 @@ class PortalCtrl extends Controller {
             throw new TurnbackException('Fecha inválida.');
         }
         $preuser = Preusuario::firstOrNew(['email' => $vdt->getData('email')]);
-        $preuser->password = md5($vdt->getData('password'));
+        $preuser->password = password_hash($vdt->getData('password'), PASSWORD_DEFAULT);
         $preuser->nombre = $vdt->getData('nombre');
         $preuser->apellido = $vdt->getData('apellido');
         $preuser->emailed_token = bin2hex(openssl_random_pseudo_bytes(16));
@@ -125,7 +125,7 @@ class PortalCtrl extends Controller {
         $preuser->save();
         
         $to = $preuser->email;
-        $subject = 'Confirma tu registro - Ley del Arbol - Santa Fe';
+        $subject = 'Confirma tu registro - A Toda Costa - Santa Fe';
         $message = $this->view->fetch('email/registro.twig', [
             'id' => $preuser->id,
             'token' => $preuser->emailed_token
@@ -187,7 +187,7 @@ class PortalCtrl extends Controller {
         $usuario->save();
         
         $to = $usuario->email;
-        $subject = 'Reiniciar clave - Ley del Arbol - Santa Fe';
+        $subject = 'Reiniciar clave - A Toda Costa - Santa Fe';
         $message = $this->view->fetch('email/recuperar.twig', [
             'id' => $usuario->id,
             'token' => $usuario->token
@@ -226,7 +226,7 @@ class PortalCtrl extends Controller {
             throw new TurnbackException('El link ha expirado o es inválido. Recordá que solamente es válido por una hora.');
         }
         $usuario->token = null;
-        $usuario->password = md5($vdt->getData('password'));
+        $usuario->password = password_hash($vdt->getData('password'), PASSWORD_DEFAULT);
         $usuario->save();
         $this->redirectTo('endReiniciarClave');
     }

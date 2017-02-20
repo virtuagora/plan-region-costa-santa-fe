@@ -4,9 +4,9 @@ $capsule = new Illuminate\Database\Capsule\Manager;
 $capsule->addConnection([
     'driver' => 'mysql',
     'host' => 'localhost',
-    'database' => 'costa',
-    'username' => 'costa',
-    'password' => 'atodacosta',
+    'database' => 'virtuagora_costa',
+    'username' => 'root',
+    'password' => '',
     'charset' => 'utf8',
     'collation' => 'utf8_general_ci',
     'prefix' => ''
