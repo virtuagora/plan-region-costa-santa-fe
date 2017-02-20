@@ -51,7 +51,7 @@
 				<div class="form-group">
 					<h3>Descripción del area</h3>
 					<h6 class="text-info"><b>Nota:</b> La siguiente descripción aparecerá en el listado de Areas de Acción.</h6>
-					<textarea name="cuerpo"  rows="1" class="form-control"></textarea>
+					<textarea name="descripcion"  rows="1" class="form-control"></textarea>
 				</div>
 			</div>
 		</div>
@@ -62,7 +62,7 @@
 				<div class="lista-acciones">
 					{% for seccion in derecho.secciones %}
 					<div class="accion-container color-{{(seccion.id-1) % 3}}">
-						<textarea name="descripcion" class="accion form-control" rows="1" placeholder="Describa la acción...">{{seccion.descripcion|nl2br}}</textarea>
+						<textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la acción...">{{seccion.descripcion|nl2br}}</textarea>
 					</div>
                     {% endfor %}
 				</div>
