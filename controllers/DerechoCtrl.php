@@ -66,7 +66,7 @@ class DerechoCtrl extends Controller {
     public function verModificar($idDer) {
         $vdt = new Validate\QuickValidator([$this, 'notFound']);
         $vdt->test($idDer, new Validate\Rule\NumNatural());
-        $categorias = Categoria::all()->toArray();
+        //$categorias = Categoria::all()->toArray();
         $derecho = Derecho::with('contenido')->findOrFail($idDer);
         $contenido = $derecho->contenido;
         $datos = array_merge($contenido->toArray(), $derecho->toArray());
