@@ -65,8 +65,8 @@ linkhead %} {% endblock %} {% block header %} {% endblock header %} {% block bod
                     </li>
                     {% for derecho in derechos %}
                     <li class="list-group-item">
-                     <a href="{{ urlFor('shwModifDerecho', {'idDer': derecho.id}) }}" class="pull-right" style="margin: 0 3px;"><span class="badge"><i class="fa fa-pencil"></i> Edit </i></span></a>
-                            {{ derecho.id }}. {{ derecho.titulo}}
+                     <a href="{{ urlFor('shwModifDerecho', {'idDer': derecho.contenible_id}) }}" class="pull-right" style="margin: 0 3px;"><span class="badge"><i class="fa fa-pencil"></i> Edit </i></span></a>
+                            {{ derecho.orden }}. {{ derecho.titulo }}
                     </li>
                     {% endfor %}
                 </ul>
