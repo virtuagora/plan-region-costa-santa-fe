@@ -18,7 +18,7 @@ linkhead %}
                     <div class="form-group">
                         <h3>Nombre de la actividad</h3>
                         <h6 class="text-info"><b>Nota:</b> Evite un titulo excesivamente largo</h6>
-                        <input name="" class="form-control input-lg" />
+                        <input name="titulo" class="form-control input-lg" />
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@ linkhead %}
                     <div class="form-group">
                         <h3>Lugar y hora del evento</h3>
                         <h6 class="text-info"><b>Ejemplo:</b> Desde las 16Hs en 25 de Mayo 1682</h6>
-                        <input name="" class="form-control" />
+                        <input name="info" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@ linkhead %}
                     <div class="form-group">
                         <h3>Descripción del evento</h3>
                         <h6 class="text-info"><b>Nota:</b></h6>
-                        <textarea name="" rows="1" class="form-control"></textarea>
+                        <textarea name="descripcion" rows="1" class="form-control"></textarea>
                     </div>
                 </div>
             </div>
@@ -75,12 +75,12 @@ linkhead %}
                         <h6 class="text-info"><b>Nota:</b> Coloque la URL a una web distinta. Ej: http://www.google.com.ar</h6>
                         <div class="input-group">
                             <span class="input-group-addon">http://</span>
-                            <input type="text" class="form-control">
+                            <input name="url" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="clearfix">
 					<a href="{{urlFor('shwIndexAdmin')}}" class="btn btn-large btn-default ">Cancelar</a>
-					<button type="submit" class="btn btn-submit pull-right"><i class="fa fa-check fa-fw"></i> Editar</button>
+					<button type="submit" class="btn btn-submit pull-right"><i class="fa fa-check fa-fw"></i> Crear</button>
 				</div>
                 </div>
             </div>
@@ -126,10 +126,10 @@ linkhead %}
     $('form').submit(function (e) {
         var fecha = $("#guardarFecha").val()
         var fecha2 = $("#guardarFecha2").val()
-        fecha += ' ' + $('#timepicker').val() + ':00';
-        fecha += ' ' + $('#timepicker2').val() + ':00';
+        fecha += ' 00:00:00';
+        fecha2 += ' 00:00:00';
         $('#fecha-final').val(fecha);
-        $('#fecha-final2').val(fecha);
+        $('#fecha-final2').val(fecha2);
     })
 </script>
 {% endblock scripts %}
