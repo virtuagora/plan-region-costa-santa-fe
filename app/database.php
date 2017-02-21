@@ -6,10 +6,13 @@ $capsule->addConnection([
     'host' => 'localhost',
     'database' => 'virtuagora_costa',
     'username' => 'root',
-    'password' => '',
+    'password' => 'root',
     'charset' => 'utf8',
     'collation' => 'utf8_general_ci',
-    'prefix' => ''
+    'prefix' => '',
+    // Habilitar strict mode si mySql esta instalado
+    // https://github.com/laravel/framework/issues/3602
+    // 'strict' => true
 ]);
 $capsule->setEventDispatcher(new Illuminate\Events\Dispatcher());
 $capsule->setAsGlobal();
