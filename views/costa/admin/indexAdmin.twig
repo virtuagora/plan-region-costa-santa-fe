@@ -37,10 +37,6 @@ linkhead %} {% endblock %} {% block header %} {% endblock header %} {% block bod
                         <a href="#" class="pull-right"><span class="badge"><i class="fa fa-eye"></i></i> Ver</span></a>
                         Area con mayor feedback
                     </li>
-                    <li class="list-group-item">
-                        <a href="#" class="pull-right"><span class="badge"><i class="fa fa-download"></i></i> Ver</span></a>
-                       Lista de Usuarios
-                    </li>
                 </ul>
             </div>
              <div class="col-xs-12 col-md-2 col-sm-8 col-sm-2">
@@ -65,11 +61,12 @@ linkhead %} {% endblock %} {% block header %} {% endblock header %} {% block bod
             <div class="col-xs-12 col-md-3 col-md-offset-2 col-sm-8 col-sm-2">
                 <ul class="list-group">
                     <li class="list-group-item active">
-                        <span class="badge"><a href="{{urlFor('shwCrearDerecho')}}"> <i class="fa fa-plus"></i> Nuevo </a></span> Areas de acción
+                        <span class="badge" style="margin: 0 3px;"><a href="{{urlFor('shwCrearDerecho')}}"> <i class="fa fa-plus"></i> Nuevo </a></span> Areas de acción
                     </li>
                     {% for derecho in derechos %}
                     <li class="list-group-item">
-                        <a href="{{ urlFor('shwModifDerecho', {'idDer': derecho.id}) }}" class="pull-right"><span class="badge"><i class="fa fa-pencil"></i> Edit </i></span></a>                        {{ derecho.id }}. {{ derecho.titulo}}
+                     <a href="{{ urlFor('shwModifDerecho', {'idDer': derecho.id}) }}" class="pull-right" style="margin: 0 3px;"><span class="badge"><i class="fa fa-pencil"></i> Edit </i></span></a>
+                            {{ derecho.id }}. {{ derecho.titulo}}
                     </li>
                     {% endfor %}
                 </ul>
@@ -77,11 +74,15 @@ linkhead %} {% endblock %} {% block header %} {% endblock header %} {% block bod
             <div class="col-xs-12 col-md-2 col-sm-8 col-sm-2">
                 <ul class="list-group">
                     <li class="list-group-item active">
-                        <span class="badge"><a href="{{urlFor('shwCrearEvento')}}"> <i class="fa fa-plus"></i> Nuevo </a></span> Actividades
+                        <span class="badge" style="margin: 0 3px;"><a href="{{urlFor('shwCrearEvento')}}"> <i class="fa fa-plus"></i> Nuevo </a></span> Actividades
                     </li>
                     {# for evento in eventos #}
                     <!--<li class="list-group-item">
-    <a href="#" class="pull-right"><span class="badge"><i class="fa fa-pencil"></i> Edit </i></span></a>
+     <form action="{{ urlFor('runElimiEvento', {'idEve': evento.id }) }}" method="POST">
+    <button type="submit" class="pull-right" style="padding: 0;border: 0;background-color: transparent;margin: 0 2px;"><span class="badge" style="background-color:red;"><i class="fa fa-times"></i></span></button>
+    </form>
+    <a href="#" class="pull-right" style="margin: 0 3px;"><span class="badge"><i class="fa fa-pencil"></i> Edit</span></a>
+     
     {{evento.titulo}}
   </li>-->
                     {# endfor #}
@@ -90,11 +91,14 @@ linkhead %} {% endblock %} {% block header %} {% endblock header %} {% block bod
             <div class="col-xs-12 col-md-3  col-sm-8 col-sm-2">
                 <ul class="list-group">
                     <li class="list-group-item active">
-                        <span class="badge"><a href="{{urlFor('shwCrearOpinion')}}"> <i class="fa fa-plus"></i> Nuevo </a></span> Testimonios
+                        <span class="badge" style="margin: 0 3px;"><a href="{{urlFor('shwCrearOpinion')}}"> <i class="fa fa-plus"></i> Nuevo </a></span> Testimonios
                     </li>
                     {# for opinion in opiniones #}
                     <!--<li class="list-group-item">
-    <a href="#" class="pull-right"><span class="badge"><i class="fa fa-pencil"></i> Edit </i></span></a>
+     <form action="{{ urlFor('runElimiEvento', {'idEve': evento.id }) }}" method="POST">
+    <button type="submit" class="pull-right" style="padding: 0;border: 0;background-color: transparent;margin: 0 2px;"><span class="badge" style="background-color:red;"><i class="fa fa-times"></i></span></button>
+    </form>
+    <a href="#" class="pull-right" style="margin: 0 3px;"><span class="badge"><i class="fa fa-pencil"></i> Edit</span></a>
     {{opinion.persona}}
   </li>-->
                     {# endfor #}
@@ -102,10 +106,6 @@ linkhead %} {% endblock %} {% block header %} {% endblock header %} {% block bod
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-
-        </div>
-    </div>
+    
 </div>
 {% endblock body %} {% block scripts %} {% endblock scripts %}
