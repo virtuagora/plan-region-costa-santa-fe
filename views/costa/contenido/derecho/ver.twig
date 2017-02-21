@@ -173,8 +173,40 @@ linkhead %} {% endblock %} {% block header %}
                         </div>
                     </div>
                     {% else %}
+                    <div class="grid">
+                        <div class="grid-sizer"></div>
+                         <div class="grid-item">
                     <div class="text-center">
                         <h3 class="black gris">No hay comentarios<br><small>¡Sea el primero dejando su comentario!</small></h3>
+                    </div>
+                        </div>
+                         {% if user is not null %}
+                        <div class="grid-item">
+                            <div class="comentario-container">
+                                <a href="{{ urlFor('shwUsuario',{'idUsu': comentario.autor.id}) }}" class="pull-left">
+                                    <img alt="image" class="img-circle" src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{respuesta.autor.id % 6}}.svg">
+                                </a>
+                                <div class="media-body ">
+                                    <strong>{{ comentario.autor.es_moderador ? "<i class='fa fa-shield fa-fw' title='Moderador'></i>" }} {{ user.nombre|upper }} {{ user.apellido|upper }}</strong>
+                                    <form class="form-horizontal" action="{{ urlFor('runComentar', {'tipoRaiz': 'seccion' , 'idRaiz': seccion.id}) }}" method="POST">
+                                        <textarea name="cuerpo" class="form-control input-sm" rows="1" placeholder="Escriba aqui su comentario..." style="resize: none;"></textarea>
+                                        <div class="clearfix" style="margin-top: 10px">
+                                            <button type="submit" class=" pull-right btn btn-primary btn-xs">Enviar comentario</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        {% else %}
+                        <div class="grid-item">
+                                <div class="no-login color-{{(seccion.id-1) % 3}}">
+                                    <h3>¿Desea participar comentando?</h3>
+                                    <h3><a href="{{urlFor('shwCrearUsuario')}}" class="btn btn-default">Registrese</a> o <a href="{{urlFor('shwLogin')}}" class="btn btn-default">Inicie sesión</a></h3>
+                                </div>
+                        </div>
+
+                         {% endif %}
                     </div>
                     {% endif %}
                 </div>
