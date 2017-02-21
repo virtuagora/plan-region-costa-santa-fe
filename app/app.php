@@ -117,8 +117,8 @@ $app->group('/area', function () use ($app, $checkRole) {
 
 // TODO Hice que en vez de opinion, sea /testimonio. logicamente no lo cambies de lo que es derecho..
 $app->group('/testimonio', function () use ($app, $checkRole) {
-    $app->get('/crear', $checkRole('mod'), 'OpinionCtrl:verCrear')->name('shwCrearOpinion');
-    $app->post('/crear', $checkRole('mod'), 'OpinionCtrl:crear')->name('runCrearOpinion');
+    $app->get('/crear', $checkRole('mod'), 'TestimonioCtrl:verCrear')->name('shwCrearOpinion');
+    $app->post('/crear', $checkRole('mod'), 'TestimonioCtrl:crear')->name('runCrearOpinion');
     $app->get('/:idOpi/modificar', $checkRole('mod'), 'OpinionCtrl:verModificar')->name('shwModifOpinion');
     $app->post('/:idOpi/modificar', $checkRole('mod'), 'OpinionCtrl:modificar')->name('runModifOpinion');
 });

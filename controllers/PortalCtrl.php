@@ -4,8 +4,10 @@ class PortalCtrl extends Controller {
 
     public function verIndex() {
         $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
+        $testimonios = Testimonio::all()->toArray();
         $this->render('costa/portal/inicio.twig',  [
-            'derechos' => $derechos
+            'derechos' => $derechos,
+            'testimonios' => $testimonios,
         ]);
     }
 
