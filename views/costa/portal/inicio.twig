@@ -114,30 +114,12 @@ y San Javier</b></h1>
             <div class="col-xs-12">
                 <div class="box text-center">
                     <div class="carrousel-testimonios">
+                        {% for testimonio in testimonios %}
                         <div class="testimonio">
-                            <p><i>"Donec nibh mauris, rhoncus nec massa in, dictum placerat lorem. Praesent fringilla dapibus pharetra.
-                                Proin eget condimentum nibh. Nulla facilisi. Aenean at orci quam. Donec eget leo non sem
-                                pharetra pellentesque eget sed arcu. Phasellus id pretium orci.</i></p>
-                            <span class="autor">Miguel Liftchitz</span><span class="titulo"> - Gobernador de la Provincia de Santa Fe</span></p>
+                            <p><i>"{{testimonio.testimonio}}"</i></p>
+                            <span class="autor">{{testimonio.persona}}</span><span class="titulo"> - {{testimonio.cargo}}</span></p>
                         </div>
-                        <div class="testimonio">
-                            <p><i>"Donec nibh mauris, rhoncus nec massa in, dictum placerat lorem. Praesent fringilla dapibus pharetra.
-                                Proin eget condimentum nibh. Nulla facilisi. Aenean at orci quam. Donec eget leo non sem
-                                pharetra pellentesque eget sed arcu. Phasellus id pretium orci.</i></p>
-                            <span class="autor">Guillemro Croppi</span><span class="titulo"> - Gobernador de la Provincia de Santa Fe</span></p>
-                        </div>
-                        <div class="testimonio">
-                            <p><i>"Donec nibh mauris, rhoncus nec massa in, dictum placerat lorem. Praesent fringilla dapibus pharetra.
-                                Proin eget condimentum nibh. Nulla facilisi. Aenean at orci quam. Donec eget leo non sem
-                                pharetra pellentesque eget sed arcu. Phasellus id pretium orci.”"</i></p>
-                            <span class="autor">Miguel Liftchitz</span><span class="titulo"> - Gobernador de la Provincia de Santa Fe</span></p>
-                        </div>
-                        <div class="testimonio">
-                            <p>"Donec nibh mauris, rhoncus nec massa in, dictum placerat lorem. Praesent fringilla dapibus pharetra.
-                                Proin eget condimentum nibh. Nulla facilisi. Aenean at orci quam. Donec eget leo non sem
-                                pharetra pellentesque eget sed arcu. Phasellus id pretium orci.”"</p>
-                            <span class="autor">Guillemro Croppi</span><span class="titulo"> - Gobernador de la Provincia de Santa Fe</span></p>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
