@@ -119,6 +119,7 @@ $app->group('/area', function () use ($app, $checkRole) {
 $app->group('/testimonio', function () use ($app, $checkRole) {
     $app->get('/crear', $checkRole('mod'), 'TestimonioCtrl:verCrear')->name('shwCrearOpinion');
     $app->post('/crear', $checkRole('mod'), 'TestimonioCtrl:crear')->name('runCrearOpinion');
+    $app->post('/:idOpi/eliminar', $checkRole('mod'), 'TestimonioCtrl:eliminar')->name('runEliminarOpinion');    
     $app->get('/:idOpi/modificar', $checkRole('mod'), 'OpinionCtrl:verModificar')->name('shwModifOpinion');
     $app->post('/:idOpi/modificar', $checkRole('mod'), 'OpinionCtrl:modificar')->name('runModifOpinion');
 });

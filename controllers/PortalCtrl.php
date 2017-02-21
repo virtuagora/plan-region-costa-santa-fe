@@ -32,7 +32,7 @@ class PortalCtrl extends Controller {
         ]);
     }
     public function verAreas() {
-         $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
+        $derechos = Contenido::with('Contenible')->where('contenible_type', 'Derecho')->get()->toArray();
         $this->render('costa/portal/areas.twig',  [
             'derechos' => $derechos
         ]   );

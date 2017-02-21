@@ -11,7 +11,7 @@ class Seccion extends Eloquent {
     }
 
     public function comentarios() {
-        return $this->morphMany('Comentario', 'comentable');
+        return $this->morphMany('Comentario', 'comentable')->orderBy('updated_at', 'DESC');
     }
     
     public function votos() {

@@ -26,8 +26,8 @@
             </div>
             <div class="col-xs-12 col-sm-8 col-md-7">
                 <h1>{{area.titulo}}</h1>
-                <p>{{area.descripcion}}</p>
-                    <a href="{{urlFor('shwDerecho', {'idDer':area.id})}}" class="btn btn-primary btn-amarillo">Ver más</a>
+                <p>{{area.contenible.descripcion}}</p>
+                    <a href="{{urlFor('shwDerecho', {'idDer':area.contenible_id})}}" class="btn btn-primary btn-amarillo">Ver más</a>
             </div>
         </div>
         {% endfor %}
