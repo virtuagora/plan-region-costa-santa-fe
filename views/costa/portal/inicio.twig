@@ -92,10 +92,10 @@ y San Javier</b></h1>
                     {% else %}
                     <div class="line amarillo"></div>                    
                     {% endif %}
-                    <img src="{{ baseUrl() }}/assets-costa/img/ejes/{{derecho.id}}.svg" alt="">
+                    <img src="{{ baseUrl() }}/assets-costa/img/ejes/{{derecho.orden}}.svg" alt="">
                     <h2 class="titulo">{{derecho.titulo}}</h2>
-                    <p class="descripcion">{{derecho.descripcion}}</p>
-                    <a href="{{urlFor('shwDerecho', {'idDer':derecho.id})}}" class="btn btn-pill btn-amarillo">Participá</a>
+                    <p class="descripcion">{{derecho.resumen}}</p>
+                    <a href="{{urlFor('shwDerecho', {'idDer':derecho.contenible_id})}}" class="btn btn-pill btn-amarillo">Participá</a>
                 </div>
                         {%endfor%}
             </div>
