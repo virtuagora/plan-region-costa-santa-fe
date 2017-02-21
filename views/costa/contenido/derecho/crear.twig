@@ -39,10 +39,10 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 				<div class="form-group">
-					<h3>Breve descripción para el Home <small>(Max: 150 caracteres)</small></h3>
+					<h3>Breve descripción para el Home <small>(Recomendado: 150 caracteres)</small></h3>
 					<h6 class="text-info"><b>Nota:</b> La siguiente descripcion es la que se muestra en una parte del Home. Le sugerimos que no superen los 150 caracteres, o que todas las areas tenga.</h6>
 					<textarea name="resumen" onkeyup="checkLength(this)" onchange="checkLength(this)" rows="1" class="form-control"></textarea>
-					<h6 class="text-info"><span class="restantes">150</span> Caracteres restantes</h6>					
+					<h6 class="text-info"><span class="restantes">?</span> Caracteres restantes</h6>					
 				</div>
 			</div>
 		</div>
@@ -77,6 +77,8 @@
 			<input type="text" name="secciones" value="" hidden>
 			<input type="text" name="categoria" value="1" hidden>
 			<input type="text" name="tags" value="" hidden>
+			<input type="text" name="video" value="" hidden>
+			<input type="text" name="imagen" value="0" hidden>
 		</div>
 		</form>
 	</div>
@@ -133,10 +135,10 @@
 });
 
 	function checkLength(control) {
-				if (control.value.length > 150) {
-					control.value = control.value.substr(0, 150);
-				}
-				$('span.restantes').html(150-control.value.length);
+				// if (control.value.length > 150) {
+				// 	control.value = control.value.substr(0, 150);
+				// }
+				$('span.restantes').html(control.value.length);
 			}
 
 </script>
