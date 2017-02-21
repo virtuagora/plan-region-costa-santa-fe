@@ -28,7 +28,7 @@ class PortalCtrl extends Controller {
     public function verActividades() {
         $eventos = Evento::all()->sortBy('fecha');
         $this->render('costa/portal/actividades.twig', [
-            'eventos' => $eventos
+            'actividades' => $eventos
         ]);
     }
     public function verAreas() {

@@ -66,7 +66,8 @@ class EventoCtrl extends Controller {
             ->addRule('info', new Validate\Rule\MinLength(1))
             ->addOptional('fecha_hasta')
             ->addOptional('info')
-            ->addFilter('fecha_hasta', FilterFactory::emptyToNull());
+            ->addFilter('fecha_hasta', FilterFactory::emptyToNull())
+            ->addFilter('info', FilterFactory::emptyToNull());
         if (!$vdt->validate($data)) {
             throw new TurnbackException($vdt->getErrors());
         }
