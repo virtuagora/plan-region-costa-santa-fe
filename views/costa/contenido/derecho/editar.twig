@@ -108,11 +108,12 @@
 });
 
 	function checkLength(control) {
-				if (control.value.length > 150) {
-					control.value = control.value.substr(0, 150);
-				}
-				$('span.restantes').html(150-control.value.length);
+				// if (control.value.length > 150) {
+				// 	control.value = control.value.substr(0, 150);
+				// }
+				$('span.restantes').html(control.value.length);
 			}
+
 
 </script>
 {% endblock scripts %}
