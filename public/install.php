@@ -18,7 +18,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 <div class="col-sm-6 col-sm-offset-3">
 <div class="panel panel-primary">
 <div class="panel-heading">
-    <h3 class="panel-title">Instalar Virtuagora (LPE)</h3>
+    <h3 class="panel-title">Instalar Virtuagora</h3>
   </div>
   <div class="panel-body">
 
@@ -318,7 +318,7 @@ try {
     }
 } catch (Exception $e) {
     $titulo = '¡Ha ocurrido un error!';
-    $descrp = 'No puede establecerse conexión con la base de datos. Revise el archivo de configuracion.';
+    $descrp =  $e->getMessage();
     $exito = false;
 }?>
 <h2><strong><?php echo $titulo ?></strong></h2>

@@ -40,6 +40,9 @@ class DerechoCtrl extends Controller {
         $autor = $this->session->getUser();
         $derecho = new Derecho;
         $derecho->descripcion = $vdt->getData('descripcion');
+        // TODO fix de estos NN en la bd?
+        $derecho->video = 'nada';
+        $derecho->imagen = 0;;
         $derecho->save();
         $acciones = $vdt->getData('secciones');
         foreach ($acciones as $accion) {

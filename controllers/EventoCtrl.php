@@ -65,7 +65,8 @@ class EventoCtrl extends Controller {
         $autor = $this->session->getUser();
         $evento = new Evento;
         $evento->descripcion = $vdt->getData('descripcion');
-        $evento->lugar = $vdt->getData('lugar');
+        // TODO cambio hecho para que pase nomas.. No usamos lugar.
+        $evento->lugar = 'null';
         $evento->fechaDesde = Carbon\Carbon::parse($vdt->getData('fecha_desde'));
         $evento->fechaHasta = Carbon\Carbon::parse($vdt->getData('fecha_hasta'));
         $evento->titulo = $vdt->getData('titulo');
