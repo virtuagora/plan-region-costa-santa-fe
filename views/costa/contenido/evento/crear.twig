@@ -76,6 +76,7 @@ linkhead %}
                         <div class="input-group">
                             <span class="input-group-addon">http://</span>
                             <input name="url" type="text" class="form-control">
+                            <input name="lugar" value="aaa" hidden>                            
                         </div>
                     </div>
                     <div class="clearfix">
@@ -92,6 +93,7 @@ linkhead %}
 <script src="{{ baseUrl() }}/assets-costa/js/jquery-ui/jquery-ui.min.js"></script>
 <script src="{{ baseUrl() }}/assets-costa/js/jquery-ui/datepicker-es.js"></script>
 <script>
+    var segundaFecha = false;
     $(document).ready(function () {
         autosize($('textarea'));
         $("#datepicker").datepicker({
@@ -112,13 +114,15 @@ linkhead %}
             minDate: 0,
             onSelect: function () {
                 $('#txt-fecha2').val(this.value);
+                segundaFecha = true;
             }
-        });
+        });     
     });
 
     $('#limpiar-hasta').click(function () {
-       $("#guardarFecha2").val(0);
-       $('#txt-fecha2').val('');
+        segundaFecha = false;
+       $("#guardarFecha2").val('0000-00-00');
+       $('#txt-fecha2').val('0000-00-00);
        $('#fecha-final2').val('');
     });
 
@@ -126,8 +130,9 @@ linkhead %}
     $('form').submit(function (e) {
         var fecha = $("#guardarFecha").val()
         var fecha2 = $("#guardarFecha2").val()
-        fecha += ' 00:00:00';
-        fecha2 += ' 00:00:00';
+        if( segundafecha == false ){   
+        fecha2 = '0000-00-00';
+        }
         $('#fecha-final').val(fecha);
         $('#fecha-final2').val(fecha2);
     })
