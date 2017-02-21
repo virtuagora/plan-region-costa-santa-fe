@@ -37,8 +37,8 @@ class EventoCtrl extends Controller {
         $evento = new Evento;
         $evento->descripcion = $vdt->getData('descripcion');
         $evento->lugar = $vdt->getData('lugar');
-        $evento->fechaDesde = Carbon\Carbon::parse($vdt->getData('fecha_desde'));
-        $evento->fechaHasta = Carbon\Carbon::parse($vdt->getData('fecha_hasta'));
+        $evento->fecha_desde = Carbon\Carbon::parse($vdt->getData('fecha_desde'));
+        $evento->fecha_hasta = Carbon\Carbon::parse($vdt->getData('fecha_hasta'));
         $evento->titulo = $vdt->getData('titulo');
         $evento->info = $vdt->getData('info');
         $evento->autor()->associate($autor);

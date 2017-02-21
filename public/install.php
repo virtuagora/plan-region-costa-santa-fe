@@ -86,6 +86,7 @@ try {
             $table->dateTime('birthday')->nullable();
             $table->string('address')->nullable();
             $table->string('title')->nullable();
+            $table->string('genero')->nullable();
             $table->timestamps();
         });
         Capsule::schema()->create('partidos', function($table) {

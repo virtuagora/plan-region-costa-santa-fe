@@ -90,6 +90,7 @@ class PortalCtrl extends Controller {
             ->addRule('email', new Validate\Rule\Email())
             ->addRule('email', new Validate\Rule\MaxLength(128))
             ->addRule('email', new Validate\Rule\Unique('usuarios'))
+            ->addRule('genero', new Validate\Rule\InArray(['f', 'm']))
             ->addRule('birthday', new Validate\Rule\Date('Y-m-d'))
             ->addRule('address', new Validate\Rule\InArray(['Rosario','La Capital','General López','Castellanos',
                 'General Obligado','San Lorenzo','Las Colonias','Constitución','Caseros','San Jerónimo','San Cristóbal',
@@ -120,6 +121,7 @@ class PortalCtrl extends Controller {
         $preuser->password = password_hash($vdt->getData('password'), PASSWORD_DEFAULT);
         $preuser->nombre = $vdt->getData('nombre');
         $preuser->apellido = $vdt->getData('apellido');
+        $preuser->genero = $vdt->getData('genero');
         $preuser->emailed_token = bin2hex(openssl_random_pseudo_bytes(16));
         $preuser->birthday = $cumple;
         $preuser->title = $vdt->getData('title');
@@ -149,6 +151,7 @@ class PortalCtrl extends Controller {
             $usuario->password = $preuser->password;
             $usuario->nombre = $preuser->nombre;
             $usuario->apellido = $preuser->apellido;
+            $usuario->genero = $preuser->genero;
             $usuario->puntos = 0;
             $usuario->suspendido = false;
             $usuario->es_funcionario = false;
