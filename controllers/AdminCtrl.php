@@ -120,11 +120,13 @@ class AdminCtrl extends Controller {
 
     public function verIndexAdmin() {
          $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
-         //TODO Hacer que tambien me traiga el listado de Eventos/Actividades, pasamelo como "eventos"
-         //TODO Hacer que tambien me traiga el listado de Testimonios, pasamelo como "testimonios"
+         $testimonios = Testimonio::all()->toArray();
+         $actividades = Evento::all()->toArray();
         $this->render('costa/admin/indexAdmin.twig', [
-            'derechos' => $derechos
-        ]   );
+            'derechos' => $derechos,
+            'testimonios' => $testimonios,
+            'actividades' => $actividades,
+        ]);
     }
     
     public function verSubirImagen() {
