@@ -93,7 +93,7 @@ linkhead %} {% endblock %} {% block header %} {% endblock header %} {% block bod
                     </li>
                     {% for testimonio in testimonios %}
                     <li class="list-group-item">
-     <form action="" method="POST">
+     <form action="{{ urlFor('runElimiEvento', {'idEve': actividad.id }) }}" method="POST">
     <button type="submit" class="pull-right" style="padding: 0;border: 0;background-color: transparent;margin: 0 2px;"><span class="badge" style="background-color:red;"><i class="fa fa-times"></i></span></button>
     </form>
     {{testimonio.persona}}
