@@ -128,13 +128,15 @@ linkhead %}
 
 
     $('form').submit(function (e) {
+
         var fecha = $("#guardarFecha").val()
         var fecha2 = $("#guardarFecha2").val()
-        if( segundafecha == false ){   
-        fecha2 = '0000-00-00';
+        if( segundaFecha == false ){   
+        fecha2 = '';
         }
         $('#fecha-final').val(fecha);
         $('#fecha-final2').val(fecha2);
+       
     })
 </script>
 {% endblock scripts %}

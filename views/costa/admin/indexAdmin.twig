@@ -76,14 +76,14 @@ linkhead %} {% endblock %} {% block header %} {% endblock header %} {% block bod
                     <li class="list-group-item active">
                         <span class="badge" style="margin: 0 3px;"><a href="{{urlFor('shwCrearEvento')}}"> <i class="fa fa-plus"></i> Nuevo </a></span> Actividades
                     </li>
-                    {# for actividad in actividades #}
+                    {% for actividad in actividades %}
                     <li class="list-group-item">
      <form action="{{ urlFor('runElimiEvento', {'idEve': actividad.id }) }}" method="POST">
     <button type="submit" class="pull-right" style="padding: 0;border: 0;background-color: transparent;margin: 0 2px;"><span class="badge" style="background-color:red;"><i class="fa fa-times"></i></span></button>
     </form>  
     {{actividad.titulo}}
   </li>
-                    {# endfor #}
+                    {% endfor %}
                 </ul>
             </div>
             <div class="col-xs-12 col-md-3  col-sm-8 col-sm-2">
@@ -91,14 +91,14 @@ linkhead %} {% endblock %} {% block header %} {% endblock header %} {% block bod
                     <li class="list-group-item active">
                         <span class="badge" style="margin: 0 3px;"><a href="{{urlFor('shwCrearOpinion')}}"> <i class="fa fa-plus"></i> Nuevo </a></span> Testimonios
                     </li>
-                    {# for testimonio in testimonios #}
+                    {% for testimonio in testimonios %}
                     <li class="list-group-item">
      <form action="" method="POST">
     <button type="submit" class="pull-right" style="padding: 0;border: 0;background-color: transparent;margin: 0 2px;"><span class="badge" style="background-color:red;"><i class="fa fa-times"></i></span></button>
     </form>
     {{testimonio.persona}}
   </li>
-                    {# endfor #}
+                    {% endfor %}
                 </ul>
             </div>
         </div>
