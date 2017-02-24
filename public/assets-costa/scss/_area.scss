@@ -9,9 +9,8 @@
         margin-bottom: 90px;
         font-size: 12.5px;
         line-height: 23.5px;
-        text-align: justify;
         color: $colorTexto;
-        margin-bottom: 25px;
+        margin-bottom: 60px;
         @media (min-width: $screen-sm-min) {
             margin-top: 75px;
             margin-bottom: 75px;
@@ -29,7 +28,7 @@
         h1 {
             padding-top: 15px;
             color: $amarillo;
-            font-weight: 600;
+            font-weight: 800;
             a {
                 font-size: 15px;
                 padding-top: 15px;
@@ -106,18 +105,62 @@
                 }
             }
         }
+        hr{
+            border-width: 2px;
+            &.color-0 {
+                border-color: $amarillo;
+            }
+            &.color-1 {
+                border-color: $azul;
+            }
+            &.color-2 {
+                border-color: $verde;
+            }
+        }
     }
     .comentario-container{
         img.img-circle{
-            width: 32px;
+            width: 45px;
+            &.respuesta{
+                width: 32px
+            }
         }
         .media-body{
-            padding-left: 5px;
-            font-size: 12px;
+            padding-left: 10px;
+            padding-top: 10px;
+            font-size: 13px;
             font-family: "Raleway", Cambria, Cochin, Georgia, Times, Times New Roman, serif;
             .comment-cuerpo{
                 font-family:"Open Sans", Arial, Helvetica, sans-serif;
             }
+            .verde{
+                color: green;
+            }
+            .rojo{
+                color: red;
+            }
+            a.color-0 {
+                color: $amarillo;
+            }
+            a.color-1 {
+                color: $azul;
+            }
+            a.color-2 {
+                color: $verde;
+            }
+        }
+         .btn.btn-submit{
+            border-radius: 2px;
+border: 0;
+background-color: #379dc9;
+padding: 6px 20px;
+color: #FFF;
+font-family: 'Raleway', Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+font-weight: 400;
+font-size: 13px;
+        &:hover {
+            background-color: darken($azul, 10%);
+        }
         }
     }
     .no-login{

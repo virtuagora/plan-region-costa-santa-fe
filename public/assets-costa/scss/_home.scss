@@ -68,7 +68,7 @@
             font-family: "Raleway", serif;
             font-size: 15px;
             font-weight: 600;
-            padding: 12px 40px;
+            padding: 8.5px 40px;
             margin-top: 27.5px;
             &:hover {
                 background-color: $verde;
@@ -96,7 +96,8 @@
                 font-weight: 900;
                 color: $azul;
                 text-align: left;
-                margin-top: 125px;
+                //margin-top: 125px;
+                margin-top: 0;  
             }
         }
         p {
@@ -112,7 +113,8 @@
             }
             @media (min-width: $screen-md-min) {
                 color: $colorTexto;
-                margin-top: 130px;
+                //margin-top: 130px;
+                margin-top: 0;  
                 text-align: right;
             }
         }
@@ -123,7 +125,7 @@
             font-family: "Raleway", serif;
             font-size: 15px;
             font-weight: 600;
-            padding: 12px 40px;
+            padding: 8.5px 40px;
             margin-top: 27.5px;
             &:hover {
                 background-color: $azul;

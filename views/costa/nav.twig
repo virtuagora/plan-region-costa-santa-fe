@@ -3,16 +3,16 @@
         <div class="container" style="position:relative;">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <i class="fa fa-bars fa-fw"></i>
-      </button>
-      {% if user is not empty %}
-      <a href="javascript:void(0)" class="common-menu user-menu-show login-btn logged pull-right"><span class="hidden-sm">{{ user.nombre|upper }}</span><img src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{user.id % 6}}.svg" class="img-circle img-avatar" ><i class="fa fa-caret-down fa-fw"></i></a>
-      <a href="javascript:void(0)" class="user-menu common-menu-show login-btn logged pull-right" style="display:none">VOLVER AL MENÚ<i class="fa fa-caret-up fa-fw"></i></a>
-      {% else %}
-      <a href="{{urlFor('shwLogin')}}" class="login-btn pull-right">INGRESAR<img class="icono-login" src="{{ baseUrl() }}/assets-costa/img/login.svg" alt=""></a>
-      {% endif %}
+                <button type="button" class="navbar-toggle" data-toggle="collapse" aria-expanded="false" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars fa-fw"></i>
+            </button>
+            {% if user is not empty %}
+            <a href="javascript:void(0)" class="common-menu user-menu-show login-btn logged pull-right"><span class="hidden-sm">{{ user.nombre|upper }}</span><img src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{user.id % 6}}.svg" class="img-circle img-avatar" ><i class="fa fa-caret-down fa-fw"></i></a>
+            <a href="javascript:void(0)" class="user-menu common-menu-show login-btn logged pull-right" style="display:none">VOLVER AL MENÚ<i class="fa fa-caret-up fa-fw"></i></a>
+            {% else %}
+            <a href="{{urlFor('shwLogin')}}" class="login-btn pull-right">INGRESAR<img class="icono-login" src="{{ baseUrl() }}/assets-costa/img/login.svg" alt=""></a>
+            {% endif %}
                 <a class="navbar-brand hidden-lg hidden-md" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-costa/img/logo-mobile.svg" class="logo img-responsive" alt=""></a>
                 <a class="navbar-brand hidden-xs hidden-sm" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-costa/img/logo.svg" class="logo img-responsive" alt=""></a>
             </div>
