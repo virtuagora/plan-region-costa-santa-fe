@@ -63,15 +63,14 @@ class PortalCtrl extends Controller {
     }
 
     public function verRegistrar() {
+        $departamentos = Departamento::with('localidades')->all()->toArray();
+        $ocupaciones = ['Estudiante','Docente','Asistente escolar','Representante gremial',
+            'Profesional','Empleado/a en relación de dependencia','Comerciante',
+            'Funcionario/a, legislador/a o autoridad gubernamental','Representante de organización social',
+            'Trabajador/a doméstico/a no remunerado/a'];
         $this->render('costa/registro/registro.twig', [
-            'localidades' => ['Rosario','La Capital','General López','Castellanos','General Obligado',
-                'San Lorenzo','Las Colonias','Constitución','Caseros','San Jerónimo','San Cristóbal',
-                'Iriondo','San Martín','Vera','Belgrano','San Justo','San Javier','9 de Julio','Garay'],
-            'ocupaciones' => ['Estudiante','Docente Nivel Inicial','Docente Nivel Primario',
-                'Docente Nivel Secundario','Docente Nivel Terciario','Docente Universitario','Asistente escolar',
-                'Representante gremial','Profesional','Empleado/a en relación de dependencia','Comerciante',
-                'Funcionario/a, legislador/a y autoridad gubernamental','Representante de organización social',
-                'Trabajador/a doméstico/a no remunerado/a','Otro']
+            'departamentos' => $departamentos,
+            'ocupaciones' => $ocupaciones,
         ]);
     }
 
@@ -90,15 +89,12 @@ class PortalCtrl extends Controller {
             ->addRule('email', new Validate\Rule\MaxLength(128))
             ->addRule('email', new Validate\Rule\Unique('usuarios'))
             ->addRule('genero', new Validate\Rule\InArray(['f', 'm']))
-            ->addRule('birthday', new Validate\Rule\Date('Y-m-d'))
-            ->addRule('address', new Validate\Rule\InArray(['Rosario','La Capital','General López','Castellanos',
-                'General Obligado','San Lorenzo','Las Colonias','Constitución','Caseros','San Jerónimo','San Cristóbal',
-                'Iriondo','San Martín','Vera','Belgrano','San Justo','San Javier','9 de Julio','Garay']))
-            ->addRule('title', new Validate\Rule\InArray(['Estudiante','Docente Nivel Inicial','Docente Nivel Primario',
-                'Docente Nivel Secundario','Docente Nivel Terciario','Docente Universitario','Asistente escolar',
-                'Representante gremial','Profesional','Empleado/a en relación de dependencia','Comerciante',
-                'Funcionario/a, legislador/a y autoridad gubernamental','Representante de organización social',
-                'Trabajador/a doméstico/a no remunerado/a','Otro']))
+            ->addRule('nacimiento', new Validate\Rule\Date('Y-m-d'))
+            ->addRule('ocupacion', new Validate\Rule\MaxLength(128))
+            ->addRule('institucion', new Validate\Rule\MaxLength(128))
+            ->addRule('localidad', new Validate\Rule\NumNatural())
+            ->addRule('localidad', new Validate\Rule\NumMin(1))
+            ->addRule('localidad', new Validate\Rule\NumMax(363))
             ->addFilter('email', 'strtolower')
             ->addFilter('email', 'trim');
         $req = $this->request;
@@ -114,17 +110,18 @@ class PortalCtrl extends Controller {
         $limInf = Carbon\Carbon::create(1900, 1, 1, 0, 0, 0);
         $limSup = Carbon\Carbon::now();
         if (!$cumple->between($limInf, $limSup)) {
-            throw new TurnbackException('Fecha inválida.');
+            throw new TurnbackException('Fecha de nacimiento inválida.');
         }
         $preuser = Preusuario::firstOrNew(['email' => $vdt->getData('email')]);
         $preuser->password = password_hash($vdt->getData('password'), PASSWORD_DEFAULT);
         $preuser->nombre = $vdt->getData('nombre');
         $preuser->apellido = $vdt->getData('apellido');
         $preuser->genero = $vdt->getData('genero');
+        $preuser->nacimiento = $cumple;
+        $preuser->ocupacion = $vdt->getData('ocupacion');
+        $preuser->institucion = $vdt->getData('institucion');
+        $preuser->localidad_id = $vdt->getData('localidad');
         $preuser->emailed_token = bin2hex(openssl_random_pseudo_bytes(16));
-        $preuser->birthday = $cumple;
-        $preuser->title = $vdt->getData('title');
-        $preuser->address = $vdt->getData('address');
         $preuser->save();
         
         $to = $preuser->email;
@@ -151,15 +148,16 @@ class PortalCtrl extends Controller {
             $usuario->nombre = $preuser->nombre;
             $usuario->apellido = $preuser->apellido;
             $usuario->genero = $preuser->genero;
+            $usuario->nacimiento = $preuser->nacimiento;
+            $usuario->ocupacion = $preuser->ocupacion;
+            $usuario->institucion = $preuser->institucion;
+            $usuario->localidad_id = $preuser->localidad_id;
             $usuario->puntos = 0;
             $usuario->suspendido = false;
             $usuario->es_funcionario = false;
             $usuario->es_jefe = false;
             $usuario->img_tipo = 1;
             $usuario->img_hash = md5($preuser->email);
-            $usuario->birthday = $preuser->birthday;
-            $usuario->title = $preuser->title;
-            $usuario->address = $preuser->address;
             $usuario->save();
             $preuser->delete();
             $this->render('costa/registro/validar-correo.twig', array('usuarioValido' => true,

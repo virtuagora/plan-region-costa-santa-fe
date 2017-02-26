@@ -64,14 +64,16 @@ class UsuarioCtrl extends RMRController {
 
     public function verModificar() {
         $usuario = $this->session->getUser();
-        $this->render('/costa/usuario/modificar.twig', array('usuario' => $usuario->toArray(), 'localidades' => ['Rosario','La Capital','General López','Castellanos','General Obligado',
-                'San Lorenzo','Las Colonias','Constitución','Caseros','San Jerónimo','San Cristóbal',
-                'Iriondo','San Martín','Vera','Belgrano','San Justo','San Javier','9 de Julio','Garay'],
-            'ocupaciones' => ['Estudiante','Docente Nivel Inicial','Docente Nivel Primario',
-                'Docente Nivel Secundario','Docente Nivel Terciario','Docente Universitario','Asistente escolar',
-                'Representante gremial','Profesional','Empleado/a en relación de dependencia','Comerciante',
-                'Funcionario/a, legislador/a y autoridad gubernamental','Representante de organización social',
-                'Trabajador/a doméstico/a no remunerado/a','Otro']));
+        $departamentos = Departamento::with('localidades')->all()->toArray();
+        $ocupaciones = ['Estudiante','Docente','Asistente escolar','Representante gremial',
+            'Profesional','Empleado/a en relación de dependencia','Comerciante',
+            'Funcionario/a, legislador/a o autoridad gubernamental','Representante de organización social',
+            'Trabajador/a doméstico/a no remunerado/a'];
+        $this->render('/costa/usuario/modificar.twig', [
+            'usuario' => $usuario->toArray(),
+            'departamentos' => $departamentos,
+            'ocupaciones' => $ocupaciones,
+        ]);
     }
 
     public function modificar() {
@@ -82,28 +84,32 @@ class UsuarioCtrl extends RMRController {
             ->addRule('apellido', new Validate\Rule\Alpha(array(' ')))
             ->addRule('apellido', new Validate\Rule\MinLength(1))
             ->addRule('apellido', new Validate\Rule\MaxLength(32))
-            ->addRule('url', new Validate\Rule\URL())
-            ->addRule('email', new Validate\Rule\Email())
-            ->addRule('telefono', new Validate\Rule\Telephone())
-            ->addOptional('url')
-            ->addOptional('email')
-            ->addOptional('telefono')
-            ->addFilter('url', FilterFactory::emptyToNull())
-            ->addFilter('telefono', FilterFactory::emptyToNull());
+            ->addRule('genero', new Validate\Rule\InArray(['f', 'm']))
+            ->addRule('nacimiento', new Validate\Rule\Date('Y-m-d'))
+            ->addRule('ocupacion', new Validate\Rule\MaxLength(128))
+            ->addRule('institucion', new Validate\Rule\MaxLength(128))
+            ->addRule('localidad', new Validate\Rule\NumNatural())
+            ->addRule('localidad', new Validate\Rule\NumMin(1))
+            ->addRule('localidad', new Validate\Rule\NumMax(363));
         $req = $this->request;
         if (!$vdt->validate($req->post())) {
             throw new TurnbackException($vdt->getErrors());
         }
+        $cumple = Carbon\Carbon::parse($vdt->getData('nacimiento'));
+        $limInf = Carbon\Carbon::create(1900, 1, 1, 0, 0, 0);
+        $limSup = Carbon\Carbon::now();
+        if (!$cumple->between($limInf, $limSup)) {
+            throw new TurnbackException('Fecha de nacimiento inválida.');
+        }
         $usuario = $this->session->getUser();
         $usuario->nombre = $vdt->getData('nombre');
         $usuario->apellido = $vdt->getData('apellido');
+        $preuser->genero = $vdt->getData('genero');
+        $preuser->nacimiento = $cumple;
+        $preuser->ocupacion = $vdt->getData('ocupacion');
+        $preuser->institucion = $vdt->getData('institucion');
+        $preuser->localidad_id = $vdt->getData('localidad');
         $usuario->save();
-        $contacto = $usuario->contacto ?: new Contacto;
-        $contacto->email = $vdt->getData('email');
-        $contacto->web = $vdt->getData('url');
-        $contacto->telefono = $vdt->getData('telefono');
-        $contacto->contactable()->associate($usuario);
-        $contacto->save();
         $this->flash('success', 'Sus datos fueron modificados exitosamente.');
         $this->redirect($this->request->getReferrer());
     }

@@ -3,12 +3,17 @@
 class Usuario extends Eloquent {
     use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-    //protected $table = 'usuarios';
+    protected $table = 'usuarios';
     protected $dates = ['deleted_at', 'fin_advertencia', 'fin_suspension', 'birthday'];
     protected $hidden = ['password', 'emailed_token', 'updated_at', 'deleted_at'];
+    protected $with = ['localidad'];
 
     public function partido() {
         return $this->belongsTo('Partido');
+    }
+
+    public function Localidad() {
+        return $this->belongsTo('Localidad');
     }
 
     public function patrulla() {
