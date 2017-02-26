@@ -42,20 +42,28 @@
             <ul class="list-inline socialmedia">
                 <li><a target="_blank" href="http://www.twitter.com/GobSantaFe"><i class="fa fa-twitter fa-lg fa-fw"></i></a></li>
                 <li><a target="_blank" href="http://www.facebook.com/GobSantaFe"><i class="fa fa-facebook fa-lg fa-fw"></i></a></li>
-                <li><a target="_blank" href="http://gplus.to/GobSantaFe"><i class="fa fa-google-plus fa-lg fa-fw"></i></a></li>
                 <li><a target="_blank" href="http://www.youtube.com/GobSantaFe"><i class="fa fa-youtube-play fa-lg fa-fw"></i></a></li>
                 <li><a target="_blank" href="http://instagram.com/gobsantafe"><i class="fa fa-instagram fa-lg fa-fw"></i></a></li>
-                <li><a target="_blank" href="https://es.foursquare.com/gobsantafe"><i class="fa fa-foursquare fa-lg fa-fw"></i></a></li>
                 <li><a target="_blank" href="http://www.linkedin.com/company/gobierno-de-la-provincia-de-santa-fe"><i class="fa fa-linkedin fa-lg fa-fw"></i></a></li>
             </ul>
-            <div class="lastfoot">
+            <div class="lastfoo hidden-sm hidden-md hidden-lg">
+                <a href="{{urlFor('shwTos')}}">Terminos y Condiciones</a><br>
+                Contacto: atodacosta@santafe.gov.ar<br>Tel.: +54 342 49674167 / 167
+                <br>Centro cívico ruta nacional 11 km 482<br>S3018AGM Recreo
+            </div>
+            <div class="lastfoot hidden-xs">
+                <a href="{{urlFor('shwTos')}}">Terminos y Condiciones</a><br>
                 Contacto: atodacosta@santafe.gov.ar - Tel.: +54 342 49674167 / 167
                 <br>Centro cívico ruta nacional 11 km 482 - S3018AGM Recreo
             </div>
         </div>
-        <!--<div class="inside-footer text-right">
-<a href="http://www.virtuagora.org" style="color: #e0e0e0"><span style="font-size: 9px;">Desarrollado con </span><img style="height: 17px;margin-right: 8px;" src="{{ baseUrl() }}/assets/img/bigwhitelogo.png" alt=""></a>
-</div>-->
+<a href="http://www.virtuagora.org">
+        <div class="virtuagora-footer" style="background-color: #3f51b5;color:#FFF;margin-top:20px">
+<span style="font-size: 9px;font-weight: 500;">Hecho con </span>
+<img style="height: 13px;margin-bottom: -3px;" src="{{ baseUrl() }}/assets/img/bigwhitelogo.png" alt="">
+        </div>
+</a>
+
     </div>
         {% if flash['success'] is defined %}
 	<div id="modal-success" class="modal fade " tabindex="-1" role="dialog">

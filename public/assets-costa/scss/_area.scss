@@ -120,18 +120,29 @@
     }
     .comentario-container{
         img.img-circle{
-            width: 45px;
+            width: 50px;
             &.respuesta{
-                width: 32px
+                width: 30px
             }
         }
         .media-body{
-            padding-left: 10px;
-            padding-top: 10px;
+            padding-left: 15px;
+            //padding-top: 10px;
             font-size: 13px;
             font-family: "Raleway", Cambria, Cochin, Georgia, Times, Times New Roman, serif;
             .comment-cuerpo{
                 font-family:"Open Sans", Arial, Helvetica, sans-serif;
+                font-size:12px;
+                line-height: 20px;
+                strong{
+                    font-size:15px;
+                }
+                textarea{
+                    font-size: 12px;
+line-height: 20px;
+                font-family:"Open Sans", Arial, Helvetica, sans-serif;
+
+                }
             }
             .verde{
                 color: green;
@@ -168,6 +179,7 @@ font-size: 13px;
     text-align: center;
     border: 1px solid #a2a2a2;
     border-radius: 3px;
+        margin: 15px 0;
             &.color-0 {
                 border-color: $amarillo;
             }

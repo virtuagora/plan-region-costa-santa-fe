@@ -57,17 +57,17 @@ header {
                     color: #FFF;
                     font-size: 14px;
                     font-weight: 700;
+                    img.img-avatar {
+                        height: 32;
+                        margin-left: 5px;
+                    }
+                }
                     img.icono-login {
                         height: 14px;
                         margin-left: 5px;
                         vertical-align: top;
                         margin-top: 4px;
                     }
-                    img.img-avatar {
-                        height: 32;
-                        margin-left: 5px;
-                    }
-                }
                 >li a {
                     padding: 20.5px 0px;
                     text-align: center;
@@ -118,18 +118,18 @@ header {
             &.user-menu.logged{
             margin-top: 40px;                
             }
-            img.icono-login {
-                height: 14px;
-                margin-left: 5px;
-                vertical-align: top;
-                margin-top: 4px;
-            }
             img.img-avatar {
                 height: 32px;
                 margin-left: 5px;
             }
             }
         }
+            img.icono-login {
+                height: 14px;
+                margin-left: 5px;
+                vertical-align: top;
+                margin-top: 4px;
+            }
     }
     .navbar-default.navbar-black {
         .navbar-toggle {

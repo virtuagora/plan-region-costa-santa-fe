@@ -25,6 +25,20 @@ class DerechoCtrl extends Controller {
         ]);
     }
 
+    public function verAccion($idDer,$idAcc) {
+        $vdt = new Validate\QuickValidator([$this, 'notFound']);
+        $vdt->test($idDer, new Validate\Rule\NumNatural());
+        $derecho = Derecho::with('contenido')->findOrFail($idDer);
+        $contenido = $derecho->contenido;
+        $datosDer = array_merge($contenido->toArray(), $derecho->toArray());
+        
+        $this->render('costa/contenido/derecho/verAccion.twig', [
+            'derecho' => $datosDer,
+            'seccionMostrar' => $idAcc            
+        ]);
+    }
+
+
     public function verCrear() {
         $this->render('costa/contenido/derecho/crear.twig');
     }

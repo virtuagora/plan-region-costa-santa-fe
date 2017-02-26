@@ -22,7 +22,7 @@ class Contenido extends Eloquent {
         $attr = ['id' . substr($this->attributes['contenible_type'], 0, 3) => $this->attributes['contenible_id']];
         $app = Slim\Slim::getInstance();
         $stringcont = $app->urlFor($name, $attr);
-        return 'https://www.santafe.gob.ar/leydelarbol' . str_replace("/public/","/public/index.php/",$stringcont);
+        return 'https://www.santafe.gov.ar/atodacosta' . str_replace("/public/","/public/index.php/",$stringcont);
     }
 
     public function setTituloAttribute($value) {

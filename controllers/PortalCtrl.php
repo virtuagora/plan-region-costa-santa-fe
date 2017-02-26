@@ -40,8 +40,7 @@ class PortalCtrl extends Controller {
 
     // No lo usamos
     public function verTos() {
-        $tos = Ajuste::where('key', 'tos')->firstOrFail();
-        $this->render('lpe/contenido/static/tos.twig', ['tos' => $tos->toArray()]);
+        $this->render('costa/portal/tos.twig');
     }
 
     public function login() {

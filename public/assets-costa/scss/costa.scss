@@ -19,6 +19,7 @@
 @import "area";
 @import "contenido";
 @import "usuario";
+@import "accion";
 
 // ============================================================
 /*
@@ -43,17 +44,26 @@ body {
     height: auto !important;
     /* This line and the next line are not necessary unless you need IE6 support */
     height: 100%;
-    margin: 0 auto -290px;
+    margin: 0 auto -351px;
+    @media (min-width: $screen-sm-min) {
+    margin: 0 auto -311px;
+         }
     /* the bottom margin is the negative value of the footer's height */
 }
 
 .push {
-    height: 290px;
+    height: 351px;
+      @media (min-width: $screen-sm-min) {
+    height: 311px;
+         }
     /* .push must be the same height as .footer */
 }
 
 .footer {
-    height: 210px;
+    height: 271px;
+      @media (min-width: $screen-sm-min) {
+    height: 231px;
+         }
     font-family:"Raleway", Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     margin-top: 80px;
     font-weight:500;

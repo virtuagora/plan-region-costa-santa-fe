@@ -1,47 +1,38 @@
-{% set share_link = derecho.link %} {% set twitter_txt = 'Estoy debatiendo acerca del derecho "' ~ derecho.titulo|lower ~
-'" ¡Animate vos tambien! ' %} {% extends "costa/master.twig" %} {% set nav = 3 %} {% block titulo %}{{ derecho.titulo }}{%
-endblock titulo %} {% block opengraph %}
-<meta property="og:url" content="{{derecho.link}}" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="{{ derecho.titulo }} - A toda Costa" />
-<meta property="og:description" content="Un plan de desarrollo sustentable para Garay y San Javier. Enterate más acerca de esta area de acción. Te invitamos a saber más y a que realices tu aporte directamente o a través de la organización de la que formes parte."
-/>
-<meta property="og:image" content="{{ baseUrl() }}/assets-costa/img/sharer.png" /> {% endblock %} {% block linkhead %} {% endblock %} {% block header %}
-<div id="simple" class="header-bg area">
-    <div class="container">
+{% set share_link = derecho.link %} {% set twitter_txt = 'Estoy participando en debatir el area ' ~ derecho.titulo|upper ~
+' ¡Animate vos tambien! ' %}
+{% extends "costa/master-clean.twig" %} {% set nav = 0 %} {% block titulo %}{{ usuario.nombre }} {{ usuario.apellido }}{%
+endblock titulo %} {% block linkhead %}
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css" /> {% endblock %} {% block header %} {% endblock header %} {% block body %}
+<div id="" class="form derecho verAccion">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-12 col-md-8 col-md-offset-2 text-left">
-                <h1>Areas de acción</h1>
+            <div class="col-xs-12 text-center ">
+                <img src="{{ baseUrl() }}/assets-costa/img/ejes/{{derecho.orden}}.svg" class="img-circle img-responsive" style="height:100px; margin: 0 auto;"
+                    data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario1" alt="Avatar">
+                <h1 class="tituloDerecho">{{ derecho.titulo }}
+                </h1>
+                <a href="{{urlFor('shwDerecho', {'idDer':derecho.id})}}" class="">Volver <i class="fa fa-reply fa-fw"></i></a>
+                <hr>
             </div>
         </div>
     </div>
-</div>
-{% endblock header %} {% block body %}
-<div id="area">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-11">
-                <div class="titulo">
-                    <img src="{{ baseUrl() }}/assets-costa/img/ejes/{{derecho.id}}.svg" class="img-responsive" alt="">
-                    <h1>{{ derecho.titulo }}<a href="{{urlFor('shwAreas')}}" class="pull-right">Volver <i class="fa fa-reply fa-fw"></i></a></h1>
-                </div>
-            </div>
-        </div>
-        <div class="row area">
-            <div class="col-xs-12">
-                {% for seccion in derecho.secciones %} {% set comentariosListar = seccion.comentarios|slice(0,8) %}
-                {% set botonVerTodos = true %}
-                {% set comentariosSeccion = seccion.comentarios|length %} {% for comentario in seccion.comentarios
-                %} {% set comentariosSeccion = comentariosSeccion + comentario.respuestas|length %} {% endfor %}
-                {% set seccionColor = loop.index - 1 %}
-                <div class="box color-{{(loop.index-1) % 3}}">
-                    
+    <div id="area">
+        <div class="container">
+            <div class="row area">
+                <div class="col-xs-12">
+                    {% set botonVerTodos = false %} {% for seccion in derecho.secciones %} {% if seccion.id == seccionMostrar %} {% set comentariosListar
+                    = seccion.comentarios %} {% set comentariosSeccion = seccion.comentarios|length %} {% for comentario
+                    in seccion.comentarios %} {% set comentariosSeccion = comentariosSeccion + comentario.respuestas|length
+                    %} {% endfor %}
+                    {% set seccionColor = loop.index - 1 %}
+                   <div class="box color-{{(loop.index-1) % 3}}">
                         <div class="row">
-                            <div class="col col-sm-5 col-md-6 col-sm-offset-1">
+                            <div class="col col-sm-6 col-md-6 col-sm-offset-1">
                                 <h3>{{loop.index}}. {{seccion.descripcion}}</h3>
-                                <div class="compartir-box hidden-xs hidden-sm">
+                                <div class="compartir-box hidden-xs">
                                     <p>Compartir:
-                                        <a href="#" class="hidden-md hidden-lg hidden-sm" data-toggle="tooltip" title="Whatsapp"><img src="{{baseUrl()}}/assets-costa/img/sharer/phone.svg" alt="Whatsapp"></a>
+                                        <a href="whatsapp://send?text={{ twitter_txt|url_encode }}%20{{ share_link }}" class="hidden-md hidden-lg hidden-sm" data-toggle="tooltip" title="Whatsapp"><img src="{{baseUrl()}}/assets-costa/img/sharer/phone.svg" alt="Whatsapp"></a>
                                         <a href="https://www.facebook.com/sharer.php?u={{ share_link }}" target="_blank" data-toggle="tooltip" title="Facebook"><img src="{{baseUrl()}}/assets-costa/img/sharer/facebook.svg" alt="facebook"></a>
                                         <a href="https://plus.google.com/share?url={{ share_link }}" target="_blank" data-toggle="tooltip" title="Google+"><img src="{{baseUrl()}}/assets-costa/img/sharer/googleplus.svg" alt="Google+"></a>
                                         <a href="https://twitter.com/share?text={{ twitter_txt }}&url={{ share_link }}" target="_blank" data-toggle="tooltip"
@@ -49,14 +40,15 @@ endblock titulo %} {% block opengraph %}
                                     </p>
                                 </div>
                             </div>
-                            <div class="col col-sm-5 col-md-4 hidden-xs">
+                            <div class="col col-sm-4 col-md-4 hidden-xs">
                                 <a href="javascript:toggleComments({{ seccion.id }})" class="btn-pill pull-right">Participá <img src="{{baseUrl()}}/assets-costa/img/area/comments.svg" alt=""> {{ comentariosSeccion }}</a>
                                 <div class="clearfix">
                                     <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',3)' : urlFor('shwLogin')}}" class="btn-pill importante pull-right">Muy importante&nbsp;&nbsp;&nbsp;<span class="bold">{{seccion.votos_alta}}</span></a>
                                 </div>
                                 <div class="clearfix">
-                                    <div class="pull-right">
+                                    <div class="pull-right text-right">
                                         <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',2)' : urlFor('shwLogin')}}" class="btn-pill importante">Importante&nbsp;&nbsp;&nbsp;<span class="bold">{{seccion.votos_media}}</span></a>
+                                        <div class="hidden-xs hidden-md hidden-lg"></div>
                                         <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',1)' : urlFor('shwLogin')}}" class="btn-pill importante">Poco importante&nbsp;&nbsp;&nbsp;<span class="bold">{{seccion.votos_baja}}</span></a>
                                     </div>
                                 </div>
@@ -84,16 +76,16 @@ endblock titulo %} {% block opengraph %}
                             </div>
                         </div>
                     </div>
-                <div id="comments-{{ seccion.id }}" class="row" style="display:none">
-                    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-                         {% include 'costa/contenido/derecho/comentario.twig' %}
+                    <div id="comments-{{ seccion.id }}" class="row">
+                        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                            {% include 'costa/contenido/derecho/comentario.twig' %}
+                        </div>
                     </div>
+                    {% endif %} {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div>
     </div>
-</div>
 </div>
 {% if user and (user.patrulla_id != null) %} {% include 'lpe/contenido/moderar.twig' %} {% endif %}
 <form id="votarSeccion" method="POST">
@@ -124,7 +116,8 @@ endblock titulo %} {% block opengraph %}
 
     $(function () {
         $('a[href="#derechos"]').click(function () {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname ==
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
+                location.hostname ==
                 this.hostname) {
                 var target = $(this.hash);
                 target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
@@ -166,11 +159,6 @@ endblock titulo %} {% block opengraph %}
             $('.grid').masonry();
         }
     });
-    var toggleComments = function (id) {
-        $('#comments-' + id).toggle("fast", function () {
-            $('.grid').masonry();
-        });
-    }
 
     var votarComentario = function (id, valor) {
         var action_no = "{{ urlFor('runVotarComenta') }}";
