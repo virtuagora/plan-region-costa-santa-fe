@@ -16,7 +16,7 @@ y San Javier</b></h1>
         </div>
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                <a href="#" class="btn btn-blanco btn-block">¿Como puedo participar?</a>
+                <a href="#ejes" class="btn btn-blanco btn-block page-scroll">¿Como puedo participar?</a>
             </div>
         </div>
     </div>
@@ -128,6 +128,7 @@ y San Javier</b></h1>
 </div>
 {% endblock body %} {% block scripts %}
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+<script type="text/javascript" src="{{baseUrl()}}/assets-costa/js/jquery.easing.min.js"></script>
 <script>
     $(document).ready(function () {
         $('.carrousel').slick({
@@ -137,6 +138,7 @@ y San Javier</b></h1>
             arrows: false,
             slidesToShow: 3,
             infinite: 0,
+            adaptiveHeight: true,
             responsive: [{
                     breakpoint: 768,
                     settings: {
@@ -150,8 +152,15 @@ y San Javier</b></h1>
         });
         $('.carrousel-testimonios').slick({
 dots: true,
+adaptiveHeight: true,
             arrows: false
         });
     });
+     $("a.page-scroll").bind("click", function (e) {
+        var t = $(this);
+        $("html, body").stop().animate({
+            scrollTop: $(t.attr("href")).offset().top
+        }, 1500, "easeInOutExpo"), e.preventDefault()
+    })
 </script>
 {% endblock scripts %}
