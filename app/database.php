@@ -12,7 +12,7 @@ $capsule->addConnection([
     'prefix' => '',
     // Habilitar strict mode si mySql esta instalado
     // https://github.com/laravel/framework/issues/3602
-    // 'strict' => true
+     'strict' => true
 ]);
 $capsule->setEventDispatcher(new Illuminate\Events\Dispatcher());
 $capsule->setAsGlobal();

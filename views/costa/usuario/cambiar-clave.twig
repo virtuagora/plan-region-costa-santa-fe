@@ -3,7 +3,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12 text-center">
-                 <img src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{usuario.id % 6}}.svg" class="img-circle img-responsive" style="height:200px; margin: 0 auto;"
+                  <img src="{{ baseUrl() }}/assets-costa/img/avatar/{{user.genero}}-{{user.id % 6}}.svg" class="img-circle img-responsive" style="height:200px; margin: 0 auto;"
                 data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario1" alt="Avatar">
 				<h1>Cambiar contraseña</h1>
 				<hr>
@@ -61,36 +61,4 @@
 	</div>
 </div>
 {% endblock body %} {% block scripts %}
-<script src="{{ baseUrl() }}/assets/js/jquery-ui/jquery-ui.min.js"></script>
-<script src="{{ baseUrl() }}/assets/js/jquery-ui/datepicker-es.js"></script>
-<script>
-  $(document).ready(function() {
-         $('input[name="nombre"]').val('{{ usuario.nombre }}');
-        $('input[name="apellido"]').val('{{ usuario.apellido }}');
-        $('input[name="email"]').val('{{ usuario.email }}');
-        $('input[name="telefono"]').val('{{ usuario.telefono }}');
-         $('#guardarFecha').val('{{ usuario.birthday|date("Y-m-d") }}');
-        $('select[name="address"]').val('{{ usuario.address }}');
-        $('select[name="title"]').val('{{ usuario.title }}');
-        var tiempo = new Date('{{ usuario.birthday }}');
-        $("#datepicker").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: 'DD, dd MM yy',
-            altField: "#guardarFecha",
-            altFormat: "yy-mm-dd",
-            yearRange: '1920:2010',
-            defaultDate: tiempo
-        });
-        $("#datepicker").val('{{ usuario.birthday|date("d/m/Y")}}')
-    });
-
-    $('form').submit(function(e) {
-        var fecha = $("#guardarFecha").val();
-        console.log(fecha);
-        $('#fecha-final').val(fecha);
-    })
-
-
-</script>
 {% endblock scripts %}

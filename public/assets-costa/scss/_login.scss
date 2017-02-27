@@ -37,6 +37,19 @@
             background-color: darken($azul, 10%);
         }
     }
+    .btn.btn-submit {
+        border-radius: 2px;
+        border: 0;
+        background-color: $azul;
+        padding: 15px 10px;
+        color: #FFF;
+        font-family: 'Raleway', Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+        font-weight: 400;
+        font-size: 15px;
+        &:hover {
+            background-color: darken($azul, 10%);
+        }
+    }
     a#verRecuperar{
         color:#3a3737;
         font-size:convert(20,pt,px);

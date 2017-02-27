@@ -5,7 +5,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12 text-center">
-                 <img src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{usuario.id % 6}}.svg" class="img-circle img-responsive" style="height:200px; margin: 0 auto;"
+                 <img src="{{ baseUrl() }}/assets-costa/img/avatar/{{usuario.genero}}-{{usuario.id % 6}}.svg" class="img-circle img-responsive" style="height:200px; margin: 0 auto;"
                 data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario1" alt="Avatar">
 				<h1>{{ usuario.nombre }} {{ usuario.apellido }} 
                      </h1>
@@ -17,8 +17,11 @@
                      {% endif %}
             <ul class="list-inline">
                 <li><strong>Fecha de nacimiento:</strong> {{ usuario.birthday|date("d/m/Y")}}</li>
-                <li><strong>Localidad:</strong> {{ usuario.address }}</li>
-                <li><strong>Ocupacion:</strong> {{ usuario.title }}</li>
+                <li><strong>Localidad:</strong> {{ usuario.localidad.nombre }}</li>
+                <li><strong>Ocupacion:</strong> {{ usuario.ocupacion }}</li>
+                {% if usuario.institucion != '' %}
+                    <li><strong>Ocupacion:</strong> {{ usuario.institucion }}</li>
+                    {% endif %}
             </ul>
 				<hr>
 			</div>

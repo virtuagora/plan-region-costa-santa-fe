@@ -20,10 +20,11 @@ endblock titulo %} {% block opengraph %}
 <div id="area">
     <div class="container">
         <div class="row">
-            <div class="col-xs-11">
+            <div class="col-xs-12 col-sm-11">
                 <div class="titulo">
+                    <h1 class="hidden-sm hidden-md hidden-lg"><a href="{{urlFor('shwAreas')}}" class="pull-right">Volver <i class="fa fa-reply fa-fw"></i></a></h1>
                     <img src="{{ baseUrl() }}/assets-costa/img/ejes/{{derecho.id}}.svg" class="img-responsive" alt="">
-                    <h1>{{ derecho.titulo }}<a href="{{urlFor('shwAreas')}}" class="pull-right">Volver <i class="fa fa-reply fa-fw"></i></a></h1>
+                    <h1>{{ derecho.titulo }}<a href="{{urlFor('shwAreas')}}" class="pull-right hidden-xs">Volver <i class="fa fa-reply fa-fw"></i></a></h1>
                 </div>
             </div>
         </div>

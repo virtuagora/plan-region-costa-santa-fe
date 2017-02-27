@@ -7,7 +7,7 @@
                 {% if user.patrulla_id != null %}
                 <img alt="image" class="img-circle" src="{{ baseUrl() }}/assets-costa/img/avatar/moderador.svg">
                 {% else %}
-                <img alt="image" class="img-circle" src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{user.id % 6}}.svg">
+                <img alt="image" class="img-circle" src="{{ baseUrl() }}/assets-costa/img/avatar/{{user.genero}}-{{user.id % 6}}.svg">
                 {% endif %}  
             </a>
             <div class="media-body ">
@@ -40,7 +40,7 @@
                 {% if comentario.autor.patrulla_id != null %}
                 <img alt="image" class="img-circle" src="{{ baseUrl() }}/assets-costa/img/avatar/moderador.svg">
                 {% else %}
-                <img alt="image" class="img-circle" src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{comentario.autor.id % 6}}.svg">
+                <img alt="image" class="img-circle" src="{{ baseUrl() }}/assets-costa/img/avatar/{{comentario.autor.genero}}-{{comentario.autor.id % 6}}.svg">
                 {% endif %}                
             </a>
             <div class="media-body ">
@@ -81,7 +81,7 @@
                         {% if user.patrulla_id != null %}
                         <img alt="image" class="img-circle respuesta" src="{{ baseUrl() }}/assets-costa/img/avatar/moderador.svg">
                         {% else %}
-                        <img alt="image" class="img-circle respuesta" src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{user.id % 6}}.svg">
+                        <img alt="image" class="img-circle respuesta" src="{{ baseUrl() }}/assets-costa/img/avatar/{{user.genero}}-{{user.id % 6}}.svg">
                         {% endif %}  
                     </a>
                     <div class="media-body">
@@ -107,7 +107,7 @@
                      {% if respuesta.autor.patrulla_id != null %}
                         <img alt="image" class="img-circle respuesta" src="{{ baseUrl() }}/assets-costa/img/avatar/moderador.svg">
                         {% else %}
-                        <img alt="image" class="img-circle respuesta" src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{respuesta.autor.id % 6}}.svg">
+                        <img alt="image" class="img-circle respuesta" src="{{ baseUrl() }}/assets-costa/img/avatar/{{respuesta.autor.genero}}-{{respuesta.autor.id % 6}}.svg">
                         {% endif %}  
                    </a>
                 <div class="media-body">
@@ -163,7 +163,7 @@
     <div class="col-xs-12">
         <div class="comentario-container">
             <a href="{{ urlFor('shwUsuario',{'idUsu': comentario.autor.id}) }}" class="pull-left">
-                <img alt="image" class="img-circle" src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{respuesta.autor.id % 6}}.svg">
+                <img alt="image" class="img-circle" src="{{ baseUrl() }}/assets-costa/img/avatar/{{user.respuesta.autor}}-{{respuesta.autor.id % 6}}.svg">
             </a>
             <div class="media-body ">
                 <div class="comment-cuerpo">

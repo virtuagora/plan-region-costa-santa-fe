@@ -8,7 +8,7 @@
                 <i class="fa fa-bars fa-fw"></i>
             </button>
             {% if user is not empty %}
-            <a href="javascript:void(0)" class="common-menu user-menu-show login-btn logged pull-right"><span class="hidden-sm">{{ user.nombre|upper }}</span><img src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{user.id % 6}}.svg" class="img-circle img-avatar" ><i class="fa fa-caret-down fa-fw"></i></a>
+            <a href="javascript:void(0)" class="common-menu user-menu-show login-btn logged pull-right"><span class="hidden-sm">{{ user.nombre|upper }}</span><img src="{{ baseUrl() }}/assets-costa/img/avatar/{{user.genero}}-{{user.id % 6}}.svg" class="img-circle img-avatar" ><i class="fa fa-caret-down fa-fw"></i></a>
             <a href="javascript:void(0)" class="user-menu common-menu-show login-btn logged pull-right" style="display:none">VOLVER AL MENÚ<i class="fa fa-caret-up fa-fw"></i></a>
             {% else %}
             <a href="{{urlFor('shwLogin')}}" class="login-btn pull-right">INGRESAR<img class="icono-login" src="{{ baseUrl() }}/assets-costa/img/login.svg" alt=""></a>
@@ -37,7 +37,7 @@
                     <li class="{{ nav == 3 ? 'active' : '' }}"><a href="{{urlFor('shwAreas')}}">Áreas de acción</a></li>
                     {% if user is not empty %}
                     <li class="btn-ingreso hidden-sm hidden-md hidden-lg">
-                        <a href="#" class="common-menu user-menu-show">{{ user.nombre }} <img src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{user.id % 6}}.svg" class="img-circle img-avatar" ><i class="fa fa-caret-down fa-fw"></i></a>
+                        <a href="#" class="common-menu user-menu-show">{{ user.nombre }} <img src="{{ baseUrl() }}/assets-costa/img/avatar/{{user.genero}}-{{user.id % 6}}.svg" class="img-circle img-avatar" ><i class="fa fa-caret-down fa-fw"></i></a>
                         </li>                    
                     {% else %}
                     <li class="btn-ingreso hidden-sm hidden-md hidden-lg"><a href="{{urlFor('shwLogin')}}">INGRESAR<img class="icono-login" src="{{ baseUrl() }}/assets-costa/img/login.svg" alt=""></a></li>

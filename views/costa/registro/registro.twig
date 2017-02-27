@@ -45,33 +45,48 @@
                     <div class="form-group">
                         <input id="datepicker" class="form-control" placeholder="Fecha de nacimiento">
                         <input id="guardarFecha" type="hidden">
-                        <input id="fecha-final" name="birthday" type="hidden" />
+                        <input id="fecha-final" name="nacimiento" type="hidden" />
                     </div>
                     <div class="form-group">
-                        <label for="inputGenero">Ocupacion</label>
-                        <select class="form-control" id="inputGenero" name="genero" data-error="Genero" required>
+                        <label for="inputGenero">Genero</label>
+                        <select class="form-control" id="inputGenero" name="genero" data-error="Especifique su genero" required>
                                             <option value="f">Femenino</option>                                      
                                             <option value="m">Masculino</option>
                                     </select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label for="inputOcupacion">Localidad</label>
-                        <select class="form-control" id="inputLocalidad" name="address" data-error="Localidad" required>
-                                        {% for localidad in localidades %}
-                                            <option value="{{ localidad }}">{{ localidad }}</option>
+                        <label for="inputOcupacion">Departamento y Localidad</label>
+                        <select class="form-control" id="inputLocalidad" name="localidad" data-error="Especifique la localidad" required>
+                                        {% for departamento in departamentos %}
+                                            {% for localidad in departamento.localidades %}
+                                            <option value="{{ localidad.id }}">{{departamento.nombre}}, {{ localidad.nombre }}</option>
+                                        {% endfor %}
                                         {% endfor %}
                                     </select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <label for="inputOcupacion">Ocupacion</label>
-                        <select class="form-control" id="inputOcupacion" name="title" data-error="Ocupación" required>
+                        <select class="form-control" id="inputOcupacion"data-error="Elija su ocupación" required>
                                         {% for ocupacion in ocupaciones %}
                                             <option value="{{ ocupacion }}">{{ ocupacion }}</option>
                                         {% endfor %}
+                                        <option value="otro">Otro...</option>
                                     </select>
                         <div class="help-block with-errors"></div>
+                    </div>
+                    <div id="boxOtro" class="form-group" style="display:none">
+                        <label for="inputOcupacionFinal">Especifique su ocupación</label>
+                        <input id="inputOcupacionFinal" name="ocupacion" type="text" placeholder="Escriba aquí su ocupacion" class="form-control"
+                            >
+                            <div class="help-block with-errors"></div>
+                    </div>
+                      <div class="form-group">
+                        <label for="inputInstitucion"><strong class="text-info">OPCIONAL</strong> Si pertenece a una institucion, especifique a cual.</label>
+                        <input name="institucion" type="text"
+                            placeholder="Institución" id="inputInstitucion" class="form-control">                            
+                            <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <div class="captcha-cont g-recaptcha" data-sitekey="6LcF-CYTAAAAAOdQ_mLyGnTl6uqw1FGj7yrpfW_F"></div>
@@ -82,11 +97,16 @@
                 <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-submit btn-block">Entrar <i class="mdi mdi-login-variant"></i></button>
-                        <br>
-                        <a href="{{urlFor('shwLogin')}}" class="btn btn-primary btn-aux btn-block">Volver</a>
                     </div>
                 </div>
             </div>
+            <div class="row">
+				<div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+					<div class="form-group text-center">
+						<a id="verRecuperar" href="{{urlFor('shwLogin')}}">Volver</a>	
+					</div>	
+				</div>		
+			</div>
         </form>
     </div>
 </div>
@@ -105,12 +125,31 @@
             yearRange: '1920:2010',
             defaultDate: new Date(1920,0,1)
         });
+        var ocupacion = $('#inputOcupacion').find(':selected').val();
+        console.log(ocupacion);
+if(ocupacion == "otro"){
+             $('#boxOtro').show();
+        }
     });
 
+$("#inputOcupacion").change(function() {
+    // jQuery
+    var ocupacion = $(this).find(':selected').val();
+if(ocupacion == "otro"){
+             $('#boxOtro').show();
+        }
+        if(ocupacion != "otro"){
+             $('#boxOtro').hide();
+        }
+});
 
-    $('form').submit(function (e) {
+    $('form').submit(function (e) { 
         var fecha = $("#guardarFecha").val();
         $('#fecha-final').val(fecha);
+        var ocupacion = $('#inputOcupacion').find(":selected").val();
+        if(ocupacion != "otro"){
+             $('#inputOcupacionFinal').val(ocupacion);
+        }
     })  
 </script>
 {% endblock scripts %}

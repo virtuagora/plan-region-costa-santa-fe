@@ -63,7 +63,7 @@ class PortalCtrl extends Controller {
     }
 
     public function verRegistrar() {
-        $departamentos = Departamento::with('localidades')->all()->toArray();
+        $departamentos = Departamento::with('localidades')->get()->toArray();
         $ocupaciones = ['Estudiante','Docente','Asistente escolar','Representante gremial',
             'Profesional','Empleado/a en relación de dependencia','Comerciante',
             'Funcionario/a, legislador/a o autoridad gubernamental','Representante de organización social',
@@ -106,7 +106,7 @@ class PortalCtrl extends Controller {
         if (!$resp->isSuccess()) {
             throw new TurnbackException('El CAPTCHA es inválido.');
         }
-        $cumple = Carbon\Carbon::parse($vdt->getData('birthday'));
+        $cumple = Carbon\Carbon::parse($vdt->getData('nacimiento'));
         $limInf = Carbon\Carbon::create(1900, 1, 1, 0, 0, 0);
         $limSup = Carbon\Carbon::now();
         if (!$cumple->between($limInf, $limSup)) {

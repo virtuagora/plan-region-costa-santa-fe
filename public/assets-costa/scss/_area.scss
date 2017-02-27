@@ -21,12 +21,17 @@
             margin-top: 120px;
         }
         img {
+         
+             @media (min-width: $screen-sm-min) {
             float: left;
+        }
             margin-right: 10px;
             height: 65px;
         }
         h1 {
+             @media (min-width: $screen-sm-min) {
             padding-top: 15px;
+        }
             color: $amarillo;
             font-weight: 800;
             a {
@@ -34,6 +39,7 @@
                 padding-top: 15px;
                 color: #3a3737;
                 font-family: "Open Sans", Arial, Helvetica, sans-serif;
+                font-weight: 400;
             }
         }
     }

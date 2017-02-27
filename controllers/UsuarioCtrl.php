@@ -64,7 +64,7 @@ class UsuarioCtrl extends RMRController {
 
     public function verModificar() {
         $usuario = $this->session->getUser();
-        $departamentos = Departamento::with('localidades')->all()->toArray();
+        $departamentos = Departamento::with('localidades')->get()->toArray();
         $ocupaciones = ['Estudiante','Docente','Asistente escolar','Representante gremial',
             'Profesional','Empleado/a en relación de dependencia','Comerciante',
             'Funcionario/a, legislador/a o autoridad gubernamental','Representante de organización social',
@@ -104,11 +104,11 @@ class UsuarioCtrl extends RMRController {
         $usuario = $this->session->getUser();
         $usuario->nombre = $vdt->getData('nombre');
         $usuario->apellido = $vdt->getData('apellido');
-        $preuser->genero = $vdt->getData('genero');
-        $preuser->nacimiento = $cumple;
-        $preuser->ocupacion = $vdt->getData('ocupacion');
-        $preuser->institucion = $vdt->getData('institucion');
-        $preuser->localidad_id = $vdt->getData('localidad');
+        $usuario->genero = $vdt->getData('genero');
+        $usuario->nacimiento = $cumple;
+        $usuario->ocupacion = $vdt->getData('ocupacion');
+        $usuario->institucion = $vdt->getData('institucion');
+        $usuario->localidad_id = $vdt->getData('localidad');
         $usuario->save();
         $this->flash('success', 'Sus datos fueron modificados exitosamente.');
         $this->redirect($this->request->getReferrer());
