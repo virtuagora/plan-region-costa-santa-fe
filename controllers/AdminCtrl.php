@@ -32,8 +32,20 @@ class AdminCtrl extends Controller {
     }
 
     public function verEstadisticas() {
-        $usuarios = Usuario::count();
-        $this->render('costa/admin/estadisticas.twig', array('usuarios' => $usuarios));
+        $usrData = [
+            'hombres' => Usuario::where('genero', 'm')->count(),
+            'mujeres' => Usuario::where('genero', 'f')->count(),
+            'comentadores' => Usuario::has('comentarios')->count(),
+            'participantes' => Usuario::has('votos')->count(),
+        ];
+        $comData = [
+            'aportes' => Comentario::where('comentable_type', 'Seccion')->count(),
+            'respuestas' => Comentario::where('comentable_type', 'Comentario')->count(),
+        ];
+        $this->render('costa/admin/estadisticas.twig', [
+            'datosUsuarios' => $usrData,
+            'datosComentarios' => $comData,
+        ]);
     }
 
     public function adminAjustes() {
