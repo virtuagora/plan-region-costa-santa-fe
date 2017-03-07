@@ -7,7 +7,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12 text-center">
-                 <img src="{{ baseUrl() }}/assets-costa/img/avatar/{{usuario.genero}}-{{usuario.id % 6}}.svg" class="img-circle img-responsive" style="height:200px; margin: 0 auto;"
+                 <img src="{{ baseUrl() }}/assets-costa/img/avatar/{{user.genero}}-{{user.id % 6}}.svg" class="img-circle img-responsive" style="height:200px; margin: 0 auto;"
                 data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario1" alt="Avatar">
 				<h1>Modificar perfil</h1>
 				<hr>
@@ -59,11 +59,17 @@
                                 <select class="form-control" id="inputLocalidad" name="localidad" data-error="Elija su localidad" required>
                                         {% for departamento in departamentos %}                                        
                                         {% for localidad in departamento.localidades %}
-                                            <option value="{{ localidad.id }}" {{ localidad.id == usuario.localidad.id ? 'selected="selected"' : ''}}>{{ departamento.nombre }}, {{ localidad.nombre }}</option>
+                                            <option data-otro="{{localidad.nombre == "Otro..." ? 'true' : 'false' }}" value="{{ localidad.id }}" {{ localidad.id == usuario.localidad.id ? 'selected="selected"' : ''}}>{{ departamento.nombre }}, {{ localidad.nombre }}</option>
                                         {% endfor %}
                                         {% endfor %}
                                         
                                     </select>
+                            </div>
+                        </div>
+                        <div id="boxLocalidadOtro" class="form-group" style="display:none">
+                            <label for="inputLocalidadOtro" class="col-lg-2 control-label">Otra Localidad</label>
+                            <div class="col-lg-10">
+                                <input id="inputLocalidadFinal" name="extra" type="text" class="form-control" placeholder="Especifique su localidad">
                             </div>
                         </div>
                         <div class="form-group">
@@ -84,7 +90,7 @@
                          <div id="boxOtro" class="form-group" style="display:none">
                             <label for="inputOcupacionOtro" class="col-lg-2 control-label">Otra Ocupacion</label>
                             <div class="col-lg-10">
-                                <input id="inputOcupacionFinal" name="ocupacion" type="text" class="form-control" id="inputOcupacionOtro" placeholder="Especifique su ocupación">
+                                <input id="inputOcupacionFinal" name="ocupacion" type="text" class="form-control" placeholder="Especifique su ocupación">
                             </div>
                         </div>
                          <div class="form-group">
@@ -116,6 +122,8 @@
          $('#guardarFecha').val('{{ usuario.nacimiento|date("Y-m-d") }}');
         $('select[name="localidad"]').val('{{ usuario.localidad.id }}');
         $('input[name="ocupacion"]').val('{{ usuario.ocupacion }}');
+        $('select[name="genero"]').val('{{ usuario.genero }}');
+        $('input[name="extra"]').val('{{ usuario.extra }}');
         $('input[name="institucion"]').val('{{ usuario.institucion }}');
         var tiempo = new Date('{{ usuario.nacimiento }}');
         $("#datepicker").datepicker({
@@ -133,6 +141,11 @@
 if(ocupacion == "otro"){
              $('#boxOtro').show();
         }
+        var otro = $('#inputLocalidad').find(':selected').data('otro');
+        console.log(otro);
+if(otro == true){
+             $('#boxLocalidadOtro').show();             
+        }
     });
 
 $("#inputOcupacion").change(function() {
@@ -144,6 +157,20 @@ if(ocupacion == "otro"){
         }
         if(ocupacion != "otro"){
              $('#boxOtro').hide();
+        }
+});
+
+
+$("#inputLocalidad").change(function() {
+    // jQuery
+    var otro = $(this).find(':selected').data('otro');
+if(otro == true){
+    console.log(otro);
+             $('#boxLocalidadOtro').show();
+        }
+        if(otro != true){
+            console.log(otro);
+             $('#boxLocalidadOtro').hide();
         }
 });
 

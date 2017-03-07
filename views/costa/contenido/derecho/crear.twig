@@ -26,13 +26,13 @@
 					<h3>Orden</h3>
 					<h6 class="text-info"><b>Nota:</b> Numero entre 1 y 6
 					<br>Es muy importante este dato ya que con este numero podemos asociar su icono correspondiente.
-					<br>1 - Calidad social
-					<br>2 - Cultura e identidad
-					<br>3 - Habitad, vivienda y ambiente
-					<br>4 - Infraestructura y ambiente
-					<br>5 - Produccion y trabajo
-					<br>6 - Turismo</h6>
-					<input name="orden" min="1" max="6" type="number" class="form-control">
+					<br>1 - Desarrollo Turístico
+					<br>2 - Produccion y trabajo
+					<br>3 - Conectividad y servicios
+					<br>4 - Habitad y medioambiente
+					<br>5 - Calidad social e identidad
+					</h6>
+					<input name="orden" min="1" max="5" type="number" class="form-control">
 				</div>
 			</div>
 		</div>
@@ -42,7 +42,7 @@
 					<h3>Breve descripción para el Home <small>(Recomendado: 150 caracteres)</small></h3>
 					<h6 class="text-info"><b>Nota:</b> La siguiente descripcion es la que se muestra en una parte del Home. Le sugerimos que no superen los 150 caracteres, o que todas las areas tenga.</h6>
 					<textarea name="resumen" onkeyup="checkLength(this)" onchange="checkLength(this)" rows="1" class="form-control"></textarea>
-					<h6 class="text-info"><span class="restantes">?</span> Caracteres restantes</h6>					
+					<!--<h6 class="text-info"><span class="restantes">?</span> Caracteres </h6>					-->
 				</div>
 			</div>
 		</div>
@@ -118,12 +118,7 @@
         $(this).closest(".li-accion").remove();
     }
 
-    $(document).on('change', ':file', function() {
-        var input = $(this),
-            numFiles = input.get(0).files ? input.get(0).files.length : 1,
-            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-        input.trigger('fileselect', [numFiles, label]);
-    });
+
     $( "form" ).submit(function( event ) {
         var secciones = [];        
         $( "textarea[name=cuerpo]" ).each(function( index ) {
@@ -134,12 +129,12 @@
         return true;
 });
 
-	function checkLength(control) {
-				// if (control.value.length > 150) {
-				// 	control.value = control.value.substr(0, 150);
-				// }
-				$('span.restantes').html(control.value.length);
-			}
+	// function checkLength(control) {
+	// 			// if (control.value.length > 150) {
+	// 			// 	control.value = control.value.substr(0, 150);
+	// 			// }
+	// 			$('span.restantes').html(control.value.length);
+	// 		}
 
 </script>
 {% endblock scripts %}

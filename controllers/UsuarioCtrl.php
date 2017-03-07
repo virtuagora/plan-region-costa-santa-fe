@@ -87,6 +87,7 @@ class UsuarioCtrl extends RMRController {
             ->addRule('genero', new Validate\Rule\InArray(['f', 'm']))
             ->addRule('nacimiento', new Validate\Rule\Date('Y-m-d'))
             ->addRule('ocupacion', new Validate\Rule\MaxLength(128))
+            ->addRule('extra', new Validate\Rule\MaxLength(128))
             ->addRule('institucion', new Validate\Rule\MaxLength(128))
             ->addRule('localidad', new Validate\Rule\NumNatural())
             ->addRule('localidad', new Validate\Rule\NumMin(1))
@@ -107,6 +108,7 @@ class UsuarioCtrl extends RMRController {
         $usuario->genero = $vdt->getData('genero');
         $usuario->nacimiento = $cumple;
         $usuario->ocupacion = $vdt->getData('ocupacion');
+        $usuario->extra = $vdt->getData('extra');
         $usuario->institucion = $vdt->getData('institucion');
         $usuario->localidad_id = $vdt->getData('localidad');
         $usuario->save();

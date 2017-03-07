@@ -17,7 +17,7 @@
                      {% endif %}
             <ul class="list-inline">
                 <li><strong>Fecha de nacimiento:</strong> {{ usuario.birthday|date("d/m/Y")}}</li>
-                <li><strong>Localidad:</strong> {{ usuario.localidad.nombre }}</li>
+                <li><strong>Localidad:</strong> {{ usuario.localidad.nombre == "Otro..." ? usuario.extra : usuario.localidad.nombre }}</li>
                 <li><strong>Ocupacion:</strong> {{ usuario.ocupacion }}</li>
                 {% if usuario.institucion != '' %}
                     <li><strong>Ocupacion:</strong> {{ usuario.institucion }}</li>

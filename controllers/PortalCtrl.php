@@ -91,6 +91,7 @@ class PortalCtrl extends Controller {
             ->addRule('genero', new Validate\Rule\InArray(['f', 'm']))
             ->addRule('nacimiento', new Validate\Rule\Date('Y-m-d'))
             ->addRule('ocupacion', new Validate\Rule\MaxLength(128))
+            ->addRule('extra', new Validate\Rule\MaxLength(128))
             ->addRule('institucion', new Validate\Rule\MaxLength(128))
             ->addRule('localidad', new Validate\Rule\NumNatural())
             ->addRule('localidad', new Validate\Rule\NumMin(1))
@@ -119,6 +120,7 @@ class PortalCtrl extends Controller {
         $preuser->genero = $vdt->getData('genero');
         $preuser->nacimiento = $cumple;
         $preuser->ocupacion = $vdt->getData('ocupacion');
+        $preuser->extra = $vdt->getData('extra');
         $preuser->institucion = $vdt->getData('institucion');
         $preuser->localidad_id = $vdt->getData('localidad');
         $preuser->emailed_token = bin2hex(openssl_random_pseudo_bytes(16));
@@ -150,6 +152,7 @@ class PortalCtrl extends Controller {
             $usuario->genero = $preuser->genero;
             $usuario->nacimiento = $preuser->nacimiento;
             $usuario->ocupacion = $preuser->ocupacion;
+            $usuario->extra = $preuser->extra;
             $usuario->institucion = $preuser->institucion;
             $usuario->localidad_id = $preuser->localidad_id;
             $usuario->puntos = 0;
