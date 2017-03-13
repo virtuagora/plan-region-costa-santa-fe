@@ -64,7 +64,7 @@ class UsuarioCtrl extends RMRController {
 
     public function verModificar() {
         $usuario = $this->session->getUser();
-        $departamentos = Departamento::with('localidades')->get()->toArray();
+        $departamentos = Departamento::with('localidades')->get()->sortBy('nombre')->toArray();
         $ocupaciones = ['Estudiante','Docente','Asistente escolar','Representante gremial',
             'Profesional','Empleado/a en relación de dependencia','Comerciante',
             'Funcionario/a, legislador/a o autoridad gubernamental','Representante de organización social',
