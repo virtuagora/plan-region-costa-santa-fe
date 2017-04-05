@@ -26,7 +26,7 @@ class PortalCtrl extends Controller {
     // TODO Controlame si esta bien.. lo saque de listar eventos.
     // Esto se mostraria en ver actividades.. esta bien, no?
     public function verActividades() {
-        $eventos = Evento::all()->sortBy('fecha');
+        $eventos = Evento::all()->sortByDesc('fecha_desde');
         $this->render('costa/portal/actividades.twig', [
             'actividades' => $eventos
         ]);
