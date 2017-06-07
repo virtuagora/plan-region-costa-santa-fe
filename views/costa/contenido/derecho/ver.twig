@@ -1,5 +1,5 @@
-{% set share_link = derecho.link %} {% set twitter_txt = 'Estoy debatiendo acerca del derecho "' ~ derecho.titulo|lower ~
-'" ¡Animate vos tambien! ' %} {% extends "costa/master.twig" %} {% set nav = 3 %} {% block titulo %}{{ derecho.titulo }}{%
+{% set share_link = 'https://www.santafe.gov.ar/atodacosta/public/index.php/area/' ~ derecho.id %} {% set twitter_txt = 'Estoy debatiendo acerca del derecho "' ~ derecho.titulo|lower ~
+'" ¡Animate vos tambien!' %} {% extends "costa/master.twig" %} {% set nav = 3 %} {% block titulo %}{{ derecho.titulo }}{%
 endblock titulo %} {% block opengraph %}
 <meta property="og:url" content="{{derecho.link}}" />
 <meta property="og:type" content="article" />
