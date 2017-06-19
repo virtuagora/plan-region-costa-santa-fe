@@ -110,10 +110,10 @@ $app->group('/area', function () use ($app, $checkRole) {
     $app->get('/crear', $checkRole('mod'), 'DerechoCtrl:verCrear')->name('shwCrearDerecho');
     $app->post('/crear', $checkRole('mod'), 'DerechoCtrl:crear')->name('runCrearDerecho');
     $app->get('/:idDer', 'DerechoCtrl:ver')->name('shwDerecho');
-    $app->get('/:idDer/:idAcc', 'DerechoCtrl:verAccion')->name('shwAccion');
-    $app->post('/votar/:idSec', $checkRole('usr'), 'DerechoCtrl:votar')->name('runVotarSeccion');
     $app->get('/:idDer/modificar', $checkRole('mod'), 'DerechoCtrl:verModificar')->name('shwModifDerecho');
     $app->post('/:idDer/modificar', $checkRole('mod'), 'DerechoCtrl:modificar')->name('runModifDerecho');
+    $app->get('/:idDer/accion/:idAcc', 'DerechoCtrl:verAccion')->name('shwAccion');
+    $app->post('/votar/:idSec', $checkRole('usr'), 'DerechoCtrl:votar')->name('runVotarSeccion');
 });
 
 // TODO Hice que en vez de opinion, sea /testimonio. logicamente no lo cambies de lo que es derecho..

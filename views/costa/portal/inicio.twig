@@ -2,7 +2,7 @@
 
 {# set nav = 0 #}
 
- {% block titulo %}Inicio{% endblock titulo %} {% block linkhead %}
+{% block titulo %}Inicio{% endblock titulo %} {% block linkhead %}
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css" /> {% endblock %} {% block header %}
 <div id="home" class="header-bg text-center">
@@ -10,8 +10,8 @@
         <div class="row">
             <div class="col-xs-12">
                 <h1><span class="ligero">Un plan de</span> <b>desarrollo<br>
-sustentable para Garay<br>
-y San Javier</b></h1>
+                    sustentable para Garay<br>
+                    y San Javier</b></h1>
             </div>
         </div>
         <div class="row">
@@ -42,7 +42,7 @@ y San Javier</b></h1>
                     de esta región a partir de proyectos que fortalezcan su desarrollo productivo y turístico; su cultura
                     e identidad, respeten al medio ambiente, y promuevan su crecimiento económico para mejorar la calidad
                     de vida de sus habitantes.<br>
-                <a href="{{ urlFor('shwActividades') }}" class="btn btn-quees">Ver actividades</a>
+                    <a href="{{ urlFor('shwActividades') }}" class="btn btn-quees">Ver actividades</a>
                 </p>
             </div>
         </div>
@@ -63,7 +63,7 @@ y San Javier</b></h1>
                 <p>
                     La planificación participativa de los Departamentos Garay y San Javier resulta de gran importancia para <b>asegurar un adecuado desarrollo territorial, que permita dinamizar el sector turístico, generar empleo, nuevas oportunidades económico-productivas, potenciando el uso de los recursos naturales, mejorando la infraestructura de servicios públicos, y revalorizando las capacidades, conocimientos  e identidad locales.</b><br>                    En este sentido, el Plan “A Toda Costa” articula y acuerda con todos los actores locales, públicos y
                     privados las principales acciones tendientes al desarrollo, promoción y consolidación de una región sustentable.<br>
-                <a href="{{ urlFor('shwAcerca') }}" class="btn btn-importancia">De dónde partimos</a>
+                    <a href="{{ urlFor('shwAcerca') }}" class="btn btn-importancia">De dónde partimos</a>
                 </p>
             </div>
         </div>
@@ -82,7 +82,7 @@ y San Javier</b></h1>
         <div class="row" style="position:relative;">
             <div class="line"></div>
             <div class="carrousel">
-                                        {% for derecho in derechos %}
+                {% for derecho in derechos %}
                 <div class="col-xs-11 col-md-3 text-center">
                     <div class="line"></div>
                     {% if loop.first %}
@@ -97,7 +97,7 @@ y San Javier</b></h1>
                     <p class="descripcion">{{derecho.resumen}}</p>
                     <a href="{{urlFor('shwDerecho', {'idDer':derecho.contenible_id})}}" class="btn btn-pill btn-amarillo">Participá</a>
                 </div>
-                        {%endfor%}
+                {%endfor%}
             </div>
         </div>
         <div class="row footer-carrousel">
@@ -118,13 +118,13 @@ y San Javier</b></h1>
                         <div class="testimonio">
                             <p><i>"{{testimonio.testimonio}}"</i></p>
                             <span class="autor">{{testimonio.persona}}</span><span class="titulo"> - {{testimonio.cargo}}</span></p>
-                        </div>
-                        {% endfor %}
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 {% endblock body %} {% block scripts %}
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
@@ -139,26 +139,26 @@ y San Javier</b></h1>
             slidesToShow: 3,
             infinite: 0,
             autoplay: true,
-  autoplaySpeed: 3000,
+            autoplaySpeed: 3000,
             adaptiveHeight: true,
             responsive: [{
-                    breakpoint: 768,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        //centerPadding: '40px',
-                        slidesToShow: 1
-                    }
+                breakpoint: 768,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    //centerPadding: '40px',
+                    slidesToShow: 1
                 }
-            ]
+            }
+                        ]
         });
         $('.carrousel-testimonios').slick({
-dots: true,
-adaptiveHeight: true,
+            dots: true,
+            adaptiveHeight: true,
             arrows: false
         });
     });
-     $("a.page-scroll").bind("click", function (e) {
+    $("a.page-scroll").bind("click", function (e) {
         var t = $(this);
         $("html, body").stop().animate({
             scrollTop: $(t.attr("href")).offset().top
